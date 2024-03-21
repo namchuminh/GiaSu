@@ -459,28 +459,29 @@ class GiaSu extends CI_Controller {
 			return redirect(base_url('admin/gia-su/'));
 		}
 
-		$data['title'] = "Danh sách môn học gia sư đảm nhiệm";
+		$data['title'] = "Danh sách khu vực gia sư đảm nhiệm";
 		$data['detail'] = $this->Model_GiaSu->getById($magiasu);
-		$data['mon'] = $this->Model_BoMon->getAll(0,1000);
+		$data['vitri'] = $this->Model_ViTri->getById($this->Model_GiaSu->getById($magiasu)[0]['MaTinhThanh']);
+		$data['quanhuyen'] = $this->Model_ViTri->getQuanHuyen($this->Model_GiaSu->getById($magiasu)[0]['MaTinhThanh']);
 
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
-			$mon = $this->input->post('mon');
-			$this->Model_BoMon->deleteGiaSuBoMon($magiasu);
+			$vitri = $this->input->post('vitri');
+			$this->Model_ViTri->deleteGiaSuViTri($magiasu);
 
-			if(empty($mon) || (count($mon) <= 0)){
-				$data['success'] = "Cập nhật môn học giảng dạy cho gia sư thành công!";
-	        	return $this->load->view('Admin/View_GiaSuMon', $data);
+			if(empty($vitri) || (count($vitri) <= 0)){
+				$data['success'] = "Cập nhật khu vực giảng dạy cho gia sư thành công!";
+	        	return $this->load->view('Admin/View_GiaSuViTri', $data);
 			}
 
-			foreach ($mon as $mabomon) {
-	            $this->Model_BoMon->insertGiaSuBoMon($mabomon, $magiasu);
+			foreach ($vitri as $maquanhuyen) {
+	            $this->Model_ViTri->insertGiaSuViTri($maquanhuyen, $magiasu);
 	        }
 
-	        $data['success'] = "Cập nhật môn học giảng dạy cho gia sư thành công!";
-	        return $this->load->view('Admin/View_GiaSuMon', $data);
+	        $data['success'] = "Cập nhật khu vực giảng dạy cho gia sư thành công!";
+	        return $this->load->view('Admin/View_GiaSuViTri', $data);
 		}
 
-		return $this->load->view('Admin/View_GiaSuMon', $data);
+		return $this->load->view('Admin/View_GiaSuViTri', $data);
 	}
 }
 

@@ -38,7 +38,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="ten">Ngày Sinh</label>
-                    <input type="text" class="form-control" value="<?php echo $detail[0]['NgaySinh']; ?>" disabled>
+                    <input type="text" class="form-control" value="<?php echo date("d/m/Y", strtotime($detail[0]['NgaySinh'])); ?>" disabled>
                   </div>
                 </div>
                 <div class="col-md-12">

@@ -51,7 +51,7 @@
                   	<?php foreach ($list as $key => $value): ?>
 	                    <tr>
 	                      <td><?php echo $key + 1; ?></td>
-                        <td><img style="width: 100px; height: 100px" src="<?php echo $value['AnhThe']; ?>"></td>
+                        <td><img style="width: 110px; height: 140px" src="<?php echo $value['AnhThe']; ?>"></td>
 	                      <td><?php echo $value['HoTen']; ?></td>
                         <td><?php echo date("d/m/Y", strtotime($value['NgaySinh'])); ?></td>
                         <td>

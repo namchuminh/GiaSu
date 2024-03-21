@@ -22,11 +22,9 @@ class CauHinh extends CI_Controller {
 			$diachi = $this->input->post('diachi');
 			$email = $this->input->post('email');
 			$sodienthoai = $this->input->post('sodienthoai');
-			$phiship = $this->input->post('phiship');
-			$mienphiship = $this->input->post('mienphiship');
 			$logo = $this->Model_CauHinh->getAll()[0]['Logo'];
 
-			if(empty($tenwebsite) || empty($motaweb) || empty($diachi) || empty($email) || empty($sodienthoai) || empty($phiship) || empty($mienphiship)){
+			if(empty($tenwebsite) || empty($motaweb) || empty($diachi) || empty($email) || empty($sodienthoai)){
 				$data['error'] = "Vui lòng nhập đủ thông tin!";
 				return $this->load->view('Admin/View_CauHinh', $data);
 			}
@@ -35,17 +33,6 @@ class CauHinh extends CI_Controller {
 
 			if (!preg_match($pattern, $sodienthoai)) {
 			    $data['error'] = "Vui lòng nhập số điện thoại hợp lệ!";
-				return $this->load->view('Admin/View_CauHinh', $data);
-			}
-
-
-			if(!is_numeric($phiship) || $phiship <= 0){
-				$data['error'] = "Vui lòng nhập phí giao hàng hợp lệ!";
-				return $this->load->view('Admin/View_CauHinh', $data);
-			}
-
-			if(!is_numeric($mienphiship) || $mienphiship <= 0){
-				$data['error'] = "Vui lòng nhập giá trị miễn phí giao hàng hợp lệ!";
 				return $this->load->view('Admin/View_CauHinh', $data);
 			}
 
@@ -59,7 +46,7 @@ class CauHinh extends CI_Controller {
 				$logo = base_url('uploads')."/".$img['file_name'];
 			}
 
-			$this->Model_CauHinh->update($tenwebsite,$motaweb,$logo,$diachi,$email,$sodienthoai,$phiship,$mienphiship);
+			$this->Model_CauHinh->update($tenwebsite,$motaweb,$logo,$diachi,$email,$sodienthoai);
 
 			$data['success'] = "Lưu cấu hình thành công!";
 			$data['detail'] = $this->Model_CauHinh->getAll();

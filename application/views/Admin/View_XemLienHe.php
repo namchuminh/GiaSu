@@ -11,7 +11,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url('admin/'); ?>">Trang Chủ</a></li>
               <li class="breadcrumb-item"><a href="<?php echo base_url('admin/lien-he/'); ?>">Quản Lý Liên Hệ</a></li>
-              <li class="breadcrumb-item active"><?php echo $detail[0]['HoTen']; ?></li>
+              <li class="breadcrumb-item active"><?php echo $detail[0]['TenKhachHang']; ?></li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="ten">Tên Khách Hàng</label>
-                    <input type="text" class="form-control tenchinh" id="ten" placeholder="Tên khách hàng" value="<?php echo $detail[0]['HoTen']; ?>">
+                    <input type="text" class="form-control tenchinh" id="ten" placeholder="Tên khách hàng" value="<?php echo $detail[0]['TenKhachHang']; ?>">
                   </div>
                 </div>
                 <div class="col-md-12">

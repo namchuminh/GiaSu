@@ -43,6 +43,10 @@
                     <label for="ten">Logo Website</label>
                     <input type="file" class="form-control" id="ten" name="logo">
                   </div>
+                  <br>
+                  <img style="width: 120px; height: 100px;" src="<?php echo $detail[0]['Logo']; ?>">
+                  <br>
+                  <br>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
@@ -60,18 +64,6 @@
                   <div class="form-group">
                     <label for="ten">Số Điện Thoại</label>
                     <input type="text" class="form-control" placeholder="Số điện thoại" name="sodienthoai" value="<?php echo $detail[0]['SoDienThoai']; ?>">
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="ten">Phí Ship</label>
-                    <input type="number" class="form-control" placeholder="Phí giao hàng" name="phiship" value="<?php echo $detail[0]['PhiShip']; ?>">
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="ten">Miễn Phí Ship</label>
-                    <input type="number" class="form-control" placeholder="Miễn phí giao hàng" name="mienphiship" value="<?php echo $detail[0]['MienPhiShip']; ?>">
                   </div>
                 </div>
               </div> 

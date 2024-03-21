@@ -18,13 +18,13 @@ class Model_LienHe extends CI_Model {
 	}
 
 	public function getAll($start = 0, $end = 10){
-		$sql = "SELECT lienhe.*, khachhang.HoTen FROM lienhe, khachhang WHERE lienhe.MaKhachHang = khachhang.MaKhachHang ORDER BY lienhe.MaLienHe DESC LIMIT ?, ?";
+		$sql = "SELECT * FROM lienhe ORDER BY MaLienHe DESC LIMIT ?, ?";
 		$result = $this->db->query($sql, array($start, $end));
 		return $result->result_array();
 	}
 
 	public function getById($MaLienHe){
-		$sql = "SELECT lienhe.*, khachhang.HoTen, khachhang.Email, khachhang.SoDienThoai FROM lienhe, khachhang WHERE lienhe.MaKhachHang = khachhang.MaKhachHang AND lienhe.MaLienHe = ?";
+		$sql = "SELECT * FROM lienhe WHERE MaLienHe = ?";
 		$result = $this->db->query($sql, array($MaLienHe));
 		return $result->result_array();
 	}

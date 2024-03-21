@@ -90,6 +90,18 @@ class Model_ViTri extends CI_Model {
 		return $result->result_array();
 	}
 
+	public function getGiaSuViTri($magiasu, $maquanhuyen){
+		return $this->db->query('SELECT * FROM `giasu_quanhuyen` WHERE MaGiaSu = ? AND MaQuanHuyen = ?', array($magiasu, $maquanhuyen))->result_array();
+	}
+
+	public function deleteGiaSuViTri($magiasu){
+		return $this->db->query('DELETE FROM `giasu_quanhuyen` WHERE MaGiaSu = ?', array($magiasu));
+	}
+
+	public function insertGiaSuViTri($maquanhuyen, $magiasu){
+		return $this->db->query('INSERT INTO `giasu_quanhuyen` (MaQuanHuyen,MaGiaSu) VALUES(?,?)', array($maquanhuyen, $magiasu));
+	}
+
 }
 
 /* End of file Model_ChuyenMuc.php */

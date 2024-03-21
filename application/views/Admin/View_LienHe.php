@@ -31,6 +31,8 @@
                     <tr>
                       <th>#</th>
                       <th>Tên Khách Hàng</th>
+                      <th>Số Điện Thoại</th>
+                      <th>Email</th>
                       <th>Tiêu Đề</th>
                       <th>Thời Gian</th>
                       <th>Hành Động</th>
@@ -41,7 +43,13 @@
 	                    <tr>
 	                      <td><?php echo $key + 1; ?></td>
 	                      <td>
-                          <a href="<?php echo base_url('admin/khach-hang/'.$value['MaKhachHang'].'/xem/'); ?>"><?php echo $value['HoTen']; ?></a>
+                          <?php echo $value['TenKhachHang']; ?>
+                        </td>
+                        <td>
+                          <?php echo $value['SoDienThoai']; ?>
+                        </td>
+                        <td>
+                          <?php echo $value['Email']; ?>
                         </td>
 	                      <td><?php echo $value['TieuDe']; ?></td>
 	                      <td>
