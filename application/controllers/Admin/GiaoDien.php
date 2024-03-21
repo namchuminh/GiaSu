@@ -10,7 +10,6 @@ class GiaoDien extends CI_Controller {
 		}
 
 		$this->load->model('Admin/Model_GiaoDien');
-		$this->load->model('Admin/Model_ChuyenMuc');
 	}
 
 	public function index()
@@ -57,19 +56,19 @@ class GiaoDien extends CI_Controller {
 	public function add()
 	{
 		$data['title'] = "Thêm giao diện website";
-		$data['category'] = $this->Model_ChuyenMuc->getAll();
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
-			$machuyenmuc = $this->input->post('machuyenmuc');
+
+			$duongdan = base_url();
+
+			if(!empty($_POST['duongdan']) && isset($_POST['duongdan'])){
+				$duongdan = $_POST['duongdan'];
+			}
+			
 			$loaigiaodien = $this->input->post('loaigiaodien');
 			$hinhanh = "";
 
-			if(empty($machuyenmuc) || empty($loaigiaodien)){
-				$data['error'] = "Vui lòng nhập đủ thông tin!";
-				return $this->load->view('Admin/View_ThemGiaoDien', $data);
-			}
-
-			if(count($this->Model_ChuyenMuc->getById($machuyenmuc)) <= 0){
-				$data['error'] = "Chuyên mục không tồn tại!";
+			if(empty($loaigiaodien)){
+				$data['error'] = "Vui lòng chọn loại giao diện!";
 				return $this->load->view('Admin/View_ThemGiaoDien', $data);
 			}
 
@@ -91,7 +90,7 @@ class GiaoDien extends CI_Controller {
 				return $this->load->view('Admin/View_ThemGiaoDien', $data);
 			}
 
-			$this->Model_GiaoDien->add($machuyenmuc,$hinhanh,$loaigiaodien);
+			$this->Model_GiaoDien->add($duongdan,$hinhanh,$loaigiaodien);
 
 			$this->session->set_flashdata('success', 'Thêm giao diện thành công!');
 			return redirect(base_url('admin/giao-dien/'));
@@ -108,20 +107,19 @@ class GiaoDien extends CI_Controller {
 
 		$data['title'] = "Cập nhật giao diện website";
 		$data['detail'] = $this->Model_GiaoDien->getById($magiaodien);
-		$data['category'] = $this->Model_ChuyenMuc->getAll();
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
-			$machuyenmuc = $this->input->post('machuyenmuc');
+			$duongdan = $this->input->post('duongdan');
 			$loaigiaodien = $this->input->post('loaigiaodien');
 			$hinhanh = $this->Model_GiaoDien->getById($magiaodien)[0]['HinhAnh'];
 
-			if(empty($machuyenmuc) || empty($loaigiaodien)){
-				$data['error'] = "Vui lòng nhập đủ thông tin!";
+			if(empty($duongdan)){
+				$data['error'] = "Vui lòng nhập đường dẫn truy cập khi giao diện được click!";
 				return $this->load->view('Admin/View_SuaGiaoDien', $data);
 			}
 
-			if(count($this->Model_ChuyenMuc->getById($machuyenmuc)) <= 0){
-				$data['error'] = "Chuyên mục không tồn tại!";
-				return $this->load->view('Admin/View_SuaGiaoDien', $data);
+			if(empty($loaigiaodien)){
+				$data['error'] = "Vui lòng chọn loại giao diện!";
+				return $this->load->view('Admin/View_ThemGiaoDien', $data);
 			}
 
 			if(($loaigiaodien != 1) && ($loaigiaodien != 2) && ($loaigiaodien != 3) && ($loaigiaodien != 4)){
@@ -139,7 +137,7 @@ class GiaoDien extends CI_Controller {
 				$hinhanh = base_url('uploads')."/".$img['file_name'];
 			}
 
-			$this->Model_GiaoDien->update($machuyenmuc,$hinhanh,$loaigiaodien,$magiaodien);
+			$this->Model_GiaoDien->update($duongdan,$hinhanh,$loaigiaodien,$magiaodien);
 			$data['success'] = "Cập nhật giao diện thành công!";
 			$data['detail'] = $this->Model_GiaoDien->getById($magiaodien);
 			return $this->load->view('Admin/View_SuaGiaoDien', $data);

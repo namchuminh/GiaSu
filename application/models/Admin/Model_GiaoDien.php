@@ -10,9 +10,9 @@ class Model_GiaoDien extends CI_Model {
 		
 	}
 
-	public function add($MaChuyenMuc,$HinhAnh,$LoaiGiaoDien){
+	public function add($DuongDan,$HinhAnh,$LoaiGiaoDien){
 		$data = array(
-	        "MaChuyenMuc" => $MaChuyenMuc,
+	        "DuongDan" => $DuongDan,
 	        "HinhAnh" => $HinhAnh,
 	        "LoaiGiaoDien" => $LoaiGiaoDien,
 	    );
@@ -31,7 +31,7 @@ class Model_GiaoDien extends CI_Model {
 	}
 
 	public function getAll($start = 0, $end = 10){
-		$sql = "SELECT giaodien.*, chuyenmuc.TenChuyenMuc, chuyenmuc.MaChuyenMuc FROM giaodien, chuyenmuc WHERE giaodien.TrangThai = 1 AND giaodien.MaChuyenMuc = chuyenmuc.MaChuyenMuc ORDER BY MaGiaoDien DESC LIMIT ?, ?";
+		$sql = "SELECT * FROM giaodien WHERE TrangThai = 1 ORDER BY MaGiaoDien DESC LIMIT ?, ?";
 		$result = $this->db->query($sql, array($start, $end));
 		return $result->result_array();
 	}
@@ -42,9 +42,9 @@ class Model_GiaoDien extends CI_Model {
 		return $result->result_array();
 	}
 
-	public function update($MaChuyenMuc,$HinhAnh,$LoaiGiaoDien,$MaGiaoDien){
-		$sql = "UPDATE giaodien SET MaChuyenMuc = ?, HinhAnh = ?, LoaiGiaoDien = ? WHERE MaGiaoDien = ?";
-		$result = $this->db->query($sql, array($MaChuyenMuc,$HinhAnh,$LoaiGiaoDien,$MaGiaoDien));
+	public function update($DuongDan,$HinhAnh,$LoaiGiaoDien,$MaGiaoDien){
+		$sql = "UPDATE giaodien SET DuongDan = ?, HinhAnh = ?, LoaiGiaoDien = ? WHERE MaGiaoDien = ?";
+		$result = $this->db->query($sql, array($DuongDan,$HinhAnh,$LoaiGiaoDien,$MaGiaoDien));
 		return $result;
 	}
 

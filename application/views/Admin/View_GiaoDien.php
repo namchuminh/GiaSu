@@ -31,7 +31,7 @@
                     <tr>
                       <th>#</th>
                       <th>Hình Ảnh</th>
-                      <th>Tên Chuyên Mục</th>
+                      <th>Đường Dẫn</th>
                       <th>Loại Giao Diện</th>
                       <th>Hành Động</th>
                     </tr>
@@ -47,7 +47,7 @@
                             <img style="width: 150px; height: 150px" src="<?php echo $value['HinhAnh']; ?>">
                           <?php } ?>
                         </td>
-	                      <td><a href="<?php echo base_url('admin/chuyen-muc/'.$value['MaChuyenMuc'].'/sua/'); ?>"><?php echo $value['TenChuyenMuc']; ?></a></td>
+	                      <td><a href="<?php echo $value['DuongDan']; ?>" target="_blank"><?php echo $value['DuongDan']; ?></a></td>
 	                      <td>
 	                      	<?php if($value['LoaiGiaoDien'] == 1){ ?>
                             Giao Diện Slide

@@ -28,12 +28,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="ten">Chọn Chuyên Mục</label>
-                    <select class="form-control" aria-label="Default select example" name="machuyenmuc">
-                      <?php foreach ($category as $key => $value): ?>
-                        <option value="<?php echo $value['MaChuyenMuc']; ?>"><?php echo $value['TenChuyenMuc']; ?></option>
-                      <?php endforeach ?>
-                    </select>
+                    <label for="ten">Đường Dẫn Truy Cập (Mặc Định: <?php echo base_url(); ?>)</label>
+                    <input type="text" class="form-control" id="ten" name="duongdan" placeholder="Link đường dẫn khi giao diện được click">
                   </div>
                 </div>
                 <div class="col-md-12">
