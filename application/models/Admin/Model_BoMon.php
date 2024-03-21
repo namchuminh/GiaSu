@@ -65,6 +65,23 @@ class Model_BoMon extends CI_Model {
 	public function insertGiaSuBoMon($mabomon, $magiasu){
 		return $this->db->query('INSERT INTO `giasu_bomon` (MaBoMon,MaGiaSu) VALUES(?,?)', array($mabomon, $magiasu));
 	}
+
+	public function getCountGiaSuMonHoc($mabomon){
+		return $this->db->query('SELECT * FROM `giasu_bomon` WHERE MaBoMon = ?', array($mabomon))->result_array();
+	}
+
+	public function getMonHocGiaSu($MaBoMon,$start = 0, $end = 10){
+		$sql = "SELECT giasu.*, giasu_bomon.*, tinhthanh.TenTinhThanh FROM giasu_bomon, giasu, tinhthanh WHERE giasu_bomon.MaGiaSu = giasu.MaGiaSu AND giasu.TrangThai = 1 AND giasu.MaTinhThanh = tinhthanh.MaTinhThanh AND giasu_bomon.MaBoMon = ? ORDER BY giasu.HoTen ASC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($MaBoMon,$start, $end));
+		return $result->result_array();
+	}
+
+	public function checkNumberTutor($MaBoMon)
+	{
+		$sql = "SELECT * FROM giasu_bomon WHERE MaBoMon = ?";
+		$result = $this->db->query($sql, array($MaBoMon));
+		return $result->num_rows();
+	}
 }
 
 /* End of file Model_ChuyenMuc.php */

@@ -113,6 +113,56 @@ class LopHoc extends CI_Controller {
 		$this->session->set_flashdata('success', 'Xóa lớp học gia sư thành công!');
 		return redirect(base_url('admin/lop-hoc/'));
 	}
+
+	public function tutor($malophoc){
+		if(count($this->Model_LopHoc->getById($malophoc)) <= 0){
+			$this->session->set_flashdata('error', 'Lớp học gia sư không tồn tại!');
+			return redirect(base_url('admin/lop-hoc/'));
+		}
+
+		$totalRecords = $this->Model_LopHoc->checkNumberTutor($malophoc);
+		$recordsPerPage = 10;
+		$totalPages = ceil($totalRecords / $recordsPerPage); 
+
+		$data['detail'] = $this->Model_LopHoc->getById($malophoc);
+		$data['totalPages'] = $totalPages;
+		$data['list'] = $this->Model_LopHoc->getLopHocGiaSu($malophoc);
+		$data['title'] = "Danh sách gia sư";
+		return $this->load->view('Admin/View_LopHocGiaSu', $data);
+	}
+
+	public function pageTutor($malophoc,$trang){
+		if(count($this->Model_LopHoc->getById($malophoc)) <= 0){
+			$this->session->set_flashdata('error', 'Lớp học gia sư không tồn tại!');
+			return redirect(base_url('admin/lop-hoc/'));
+		}
+
+		$data['title'] = "Danh sách gia sư";
+		$totalRecords = $this->Model_LopHoc->checkNumberTutor($malophoc);
+		$recordsPerPage = 10;
+		$totalPages = ceil($totalRecords / $recordsPerPage); 
+
+		if($trang < 1){
+			return redirect(base_url('admin/lop-hoc/'.$malophoc.'/gia-su/'));
+		}
+
+		if($trang > $totalPages){
+			return redirect(base_url('admin/lop-hoc/'.$malophoc.'/gia-su/'));
+		}
+
+		$start = ($trang - 1) * $recordsPerPage;
+		$data['detail'] = $this->Model_LopHoc->getById($malophoc);
+
+		if($start == 0){
+			$data['totalPages'] = $totalPages;
+			$data['list'] = $this->Model_LopHoc->getLopHocGiaSu($malophoc);
+			return $this->load->view('Admin/View_LopHocGiaSu', $data);
+		}else{
+			$data['totalPages'] = $totalPages;
+			$data['list'] = $this->Model_LopHoc->getLopHocGiaSu($malophoc,$start);
+			return $this->load->view('Admin/View_LopHocGiaSu', $data);
+		}
+	}
 }
 
 /* End of file LopHoc.php */

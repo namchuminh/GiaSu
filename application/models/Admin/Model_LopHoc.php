@@ -65,6 +65,23 @@ class Model_LopHoc extends CI_Model {
 		return $this->db->query('INSERT INTO `giasu_lophoc` (MaLopHoc,MaGiaSu) VALUES(?,?)', array($malophoc, $magiasu));
 	}
 
+	public function getCountGiaSuLopHoc($malophoc){
+		return $this->db->query('SELECT * FROM `giasu_lophoc` WHERE MaLopHoc = ?', array($malophoc))->result_array();
+	}
+
+	public function getLopHocGiaSu($MaLopHoc,$start = 0, $end = 10){
+		$sql = "SELECT giasu.*, giasu_lophoc.*, tinhthanh.TenTinhThanh FROM giasu_lophoc, giasu, tinhthanh WHERE giasu_lophoc.MaGiaSu = giasu.MaGiaSu AND giasu.TrangThai = 1 AND giasu.MaTinhThanh = tinhthanh.MaTinhThanh AND giasu_lophoc.MaLopHoc = ? ORDER BY giasu.HoTen ASC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($MaLopHoc,$start, $end));
+		return $result->result_array();
+	}
+
+	public function checkNumberTutor($MaLopHoc)
+	{
+		$sql = "SELECT * FROM giasu_lophoc WHERE MaLopHoc = ?";
+		$result = $this->db->query($sql, array($MaLopHoc));
+		return $result->num_rows();
+	}
+
 }
 
 /* End of file Model_ChuyenMuc.php */

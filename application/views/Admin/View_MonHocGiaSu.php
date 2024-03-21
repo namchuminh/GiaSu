@@ -5,12 +5,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Quản Lý Môn Học</h1>
+            <h1>Gia Sư: <?php echo $detail[0]['TenBoMon']; ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url('admin/'); ?>">Trang Chủ</a></li>
-              <li class="breadcrumb-item active">Quản Lý Môn Học</li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url('admin/mon-hoc/'); ?>">Quản Lý Môn Học</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url('admin/mon-hoc/'.$detail[0]['MaBoMon'].'/sua/'); ?>"><?php echo $detail[0]['TenBoMon']; ?></a></li>
+              <li class="breadcrumb-item active">Danh Sách Gia Sư</li>
             </ol>
           </div>
         </div>
@@ -30,50 +32,44 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Tên Môn Học</th>
-                      <th>Tên Lớp Học</th>
-                      <th>Đường Dẫn</th>
-                      <th>Số Lượng Gia Sư</th>
-                      <th>Danh Sách Gia Sư</th>
-                      <th>Hành Động</th>
+                      <th>Ảnh Thẻ</th>
+                      <th>Họ Tên</th>
+                      <th>Ngày Sinh</th>
+                      <th>Giới Tính</th>
+                      <th>Khu Vực Gia Sư</th>
+                      <th>Chức Vụ</th>
+                      <th>Chuyên Ngành</th>
+                      <th>Lương Tối Thiểu</th>
                     </tr>
                   </thead>
                   <tbody>
                   	<?php foreach ($list as $key => $value): ?>
 	                    <tr>
 	                      <td><?php echo $key + 1; ?></td>
-	                      <td><?php echo $value['TenBoMon']; ?></td>
+                        <td><img style="width: 110px; height: 140px" src="<?php echo $value['AnhThe']; ?>"></td>
+	                      <td><a href="<?php echo base_url('admin/gia-su/'.$value['MaGiaSu'].'/sua/'); ?>"><?php echo $value['HoTen']; ?></a></td>
+                        <td><?php echo date("d/m/Y", strtotime($value['NgaySinh'])); ?></td>
                         <td>
-                          <a href="<?php echo base_url('admin/lop-hoc/'.$value['MaLopHoc'].'/sua/'); ?>"><?php echo $value['TenLopHoc']; ?></a>
+                          <?php echo $value['GioiTinh'] == 1 ? "Nam" : "Nữ"; ?>
                         </td>
 	                      <td>
-	                      	<a href="<?php echo base_url('mon-hoc/'.$value['DuongDan'].'/'); ?>" target="_blank"><?php echo $value['DuongDan']; ?></a>
+	                      	<a href="<?php echo base_url('admin/vi-tri/'.$value['MaTinhThanh'].'/xem/'); ?>"><?php echo $value['TenTinhThanh']; ?></a>
 	                      </td>
                         <td>
-                          <a href="<?php echo base_url('admin/mon-hoc/'.$value['MaBoMon'].'/gia-su/'); ?>"><?php echo count($this->Model_BoMon->getCountGiaSuMonHoc($value['MaBoMon'])); ?> Gia Sư</a>
+                          <?php echo $value['ChucVu'] == 1 ? "Giảng Viên" : "Sinh Viên"; ?>
                         </td>
-                        <td>
-                          <a class="btn btn-success" href="<?php echo base_url('admin/mon-hoc/'.$value['MaBoMon'].'/gia-su/'); ?>"><i class="fa-solid fa-graduation-cap"></i> DANH SÁCH GIA SƯ</a>
-                        </td>
-	                      <td>
-	                      	<a href="<?php echo base_url('admin/mon-hoc/'.$value['MaBoMon'].'/sua/'); ?>" class="btn btn-primary" style="color: white;">
-	                      		<i class="fas fa-edit"></i>
-                            	<span>SỬA</span>
-                           	</a>
-                           	<a href="<?php echo base_url('admin/mon-hoc/'.$value['MaBoMon'].'/xoa/'); ?>" class="btn btn-danger" style="color: white;">
-	                      		<i class="fas fa-trash"></i>
-                            	<span>XÓA</span>
-                           	</a>
-	                      </td>
+                        <td><?php echo $value['ChuyenNganh']; ?></td>
+                        <td><?php echo number_format($value['LuongToiThieu']); ?>đ / 1 tháng</td>
 	                    </tr>
                     <?php endforeach ?>
                   </tbody>
                 </table>
               </div>
               <div class="card-footer clearfix">
+                <a class="btn btn-success" href="<?php echo base_url('admin/mon-hoc/'); ?>">Quay Lại</a>
                 <ul class="pagination pagination-sm m-0 float-right">
                 	<?php for($i = 1; $i <= $totalPages; $i++){ ?>
-                  		<li class="page-item"><a class="page-link" href="<?php echo base_url('admin/mon-hoc/'.$i.'/trang/') ?>"><?php echo $i; ?></a></li>
+                  		<li class="page-item"><a class="page-link" href="<?php echo base_url('admin/mon-hoc/'.$detail[0]['MaBoMon'].'/gia-su/'.$i.'/trang/') ?>"><?php echo $i; ?></a></li>
                   	<?php } ?>      
                 </ul>
               </div>

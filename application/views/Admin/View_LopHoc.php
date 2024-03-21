@@ -32,6 +32,8 @@
                       <th>#</th>
                       <th>Tên Lớp Học</th>
                       <th>Đường Dẫn</th>
+                      <th>Số Lượng Gia Sư</th>
+                      <th>Danh Sách Gia Sư</th>
                       <th>Hành Động</th>
                     </tr>
                   </thead>
@@ -43,6 +45,12 @@
 	                      <td>
 	                      	<a href="<?php echo base_url('lop-hoc/'.$value['DuongDan'].'/'); ?>" target="_blank"><?php echo $value['DuongDan']; ?></a>
 	                      </td>
+                        <td>
+                          <a href="<?php echo base_url('admin/lop-hoc/'.$value['MaLopHoc'].'/gia-su/'); ?>"><?php echo count($this->Model_LopHoc->getCountGiaSuLopHoc($value['MaLopHoc'])); ?> Gia Sư</a>
+                        </td>
+                        <td>
+                          <a class="btn btn-success" href="<?php echo base_url('admin/lop-hoc/'.$value['MaLopHoc'].'/gia-su/'); ?>"><i class="fa-solid fa-graduation-cap"></i> DANH SÁCH GIA SƯ</a>
+                        </td>
 	                      <td>
 	                      	<a href="<?php echo base_url('admin/lop-hoc/'.$value['MaLopHoc'].'/sua/'); ?>" class="btn btn-primary" style="color: white;">
 	                      		<i class="fas fa-edit"></i>

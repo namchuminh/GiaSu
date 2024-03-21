@@ -70,4 +70,15 @@ $route['admin/gia-su/(:any)/lop'] = 'Admin/GiaSu/class/$1';
 $route['admin/gia-su/(:any)/mon'] = 'Admin/GiaSu/subject/$1';
 $route['admin/gia-su/(:any)/vi-tri'] = 'Admin/GiaSu/location/$1';
 
+$route['admin/lop-hoc/(:any)/gia-su'] = 'Admin/LopHoc/tutor/$1';
+$route['admin/lop-hoc/(:any)/gia-su/(:any)/trang'] = 'Admin/LopHoc/pageTutor/$1/$2';
+
+
+$route['admin/mon-hoc/(:any)/gia-su'] = 'Admin/BoMon/tutor/$1';
+$route['admin/mon-hoc/(:any)/gia-su/(:any)/trang'] = 'Admin/BoMon/pageTutor/$1/$2';
+
+
+
+
+
 

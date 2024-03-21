@@ -118,6 +118,56 @@ class BoMon extends CI_Controller {
 		$this->session->set_flashdata('success', 'Xóa môn học gia sư thành công!');
 		return redirect(base_url('admin/mon-hoc/'));
 	}
+
+	public function tutor($mamonhoc){
+		if(count($this->Model_BoMon->getById($mamonhoc)) <= 0){
+			$this->session->set_flashdata('error', 'Môn học gia sư không tồn tại!');
+			return redirect(base_url('admin/mon-hoc/'));
+		}
+
+		$totalRecords = $this->Model_BoMon->checkNumberTutor($mamonhoc);
+		$recordsPerPage = 10;
+		$totalPages = ceil($totalRecords / $recordsPerPage); 
+
+		$data['detail'] = $this->Model_BoMon->getById($mamonhoc);
+		$data['totalPages'] = $totalPages;
+		$data['list'] = $this->Model_BoMon->getMonHocGiaSu($mamonhoc);
+		$data['title'] = "Danh sách gia sư";
+		return $this->load->view('Admin/View_MonHocGiaSu', $data);
+	}
+
+	public function pageTutor($mamonhoc,$trang){
+		if(count($this->Model_BoMon->getById($mamonhoc)) <= 0){
+			$this->session->set_flashdata('error', 'Môn học gia sư không tồn tại!');
+			return redirect(base_url('admin/mon-hoc/'));
+		}
+
+		$data['title'] = "Danh sách gia sư";
+		$totalRecords = $this->Model_BoMon->checkNumberTutor($mamonhoc);
+		$recordsPerPage = 10;
+		$totalPages = ceil($totalRecords / $recordsPerPage); 
+
+		if($trang < 1){
+			return redirect(base_url('admin/mon-hoc/'.$mamonhoc.'/gia-su/'));
+		}
+
+		if($trang > $totalPages){
+			return redirect(base_url('admin/mon-hoc/'.$mamonhoc.'/gia-su/'));
+		}
+
+		$start = ($trang - 1) * $recordsPerPage;
+		$data['detail'] = $this->Model_BoMon->getById($mamonhoc);
+
+		if($start == 0){
+			$data['totalPages'] = $totalPages;
+			$data['list'] = $this->Model_BoMon->getMonHocGiaSu($mamonhoc);
+			return $this->load->view('Admin/View_MonHocGiaSu', $data);
+		}else{
+			$data['totalPages'] = $totalPages;
+			$data['list'] = $this->Model_BoMon->getMonHocGiaSu($mamonhoc,$start);
+			return $this->load->view('Admin/View_MonHocGiaSu', $data);
+		}
+	}
 }
 
 /* End of file BoMon.php */
