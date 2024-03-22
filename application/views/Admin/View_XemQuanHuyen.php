@@ -34,6 +34,8 @@
                       <th>Tỉnh / Thành Phố</th>
                       <th>Quận / Huyện</th>
                       <th>Đường Dẫn</th>
+                      <th>Số Lượng Gia Sư</th>
+                      <th>Danh Sách Gia Sư</th>
                       <th>Hành Động</th>
                     </tr>
                   </thead>
@@ -46,6 +48,12 @@
 	                      <td>
 	                      	<a href="<?php echo base_url('quan-huyen/'.$value['DuongDan'].'/'); ?>" target="_blank"><?php echo $value['DuongDan']; ?></a>
 	                      </td>
+                        <td>
+                          <a href="<?php echo base_url('admin/vi-tri/'.$value['MaQuanHuyen'].'/gia-su/'); ?>"><?php echo count($this->Model_ViTri->getCountGiaSuViTri($value['MaQuanHuyen'])); ?> Gia Sư</a>
+                        </td>
+                        <td>
+                          <a class="btn btn-success" href="<?php echo base_url('admin/vi-tri/'.$value['MaQuanHuyen'].'/gia-su/'); ?>"><i class="fa-solid fa-graduation-cap"></i> DANH SÁCH GIA SƯ</a>
+                        </td>
 	                      <td>
 	                      	<a href="<?php echo base_url('admin/vi-tri/'.$tinh[0]['MaTinhThanh'].'/quan-huyen/'.$value['MaQuanHuyen'].'/sua/'); ?>" class="btn btn-primary" style="color: white;">
 	                      		<i class="fas fa-edit"></i>

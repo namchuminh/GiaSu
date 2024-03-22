@@ -202,6 +202,66 @@ class ViTri extends CI_Controller {
 		$this->session->set_flashdata('success', 'Xóa Tỉnh / Thành Phố thành công!');
 		return redirect(base_url('admin/vi-tri/'));
 	}
+
+	public function tutor($maquanhuyen){
+		if(count($this->Model_ViTri->getQuanHuyenById($maquanhuyen)) <= 0){
+			$this->session->set_flashdata('error', 'Quận / huyện gia sư không tồn tại!');
+			return redirect(base_url('admin/vi-tri/'));
+		}
+
+		$matinhthanh = $this->Model_ViTri->getQuanHuyenById($maquanhuyen)[0]['MaTinhThanh'];
+
+		if($this->Model_ViTri->checkNumberTutor($maquanhuyen) <= 0){
+			$this->session->set_flashdata('error', 'Không có gia sư thuộc khu vực này!');
+			return redirect(base_url('admin/vi-tri/'.$matinhthanh.'/xem/'));
+		}
+
+		$totalRecords = $this->Model_ViTri->checkNumberTutor($maquanhuyen);
+		$recordsPerPage = 10;
+		$totalPages = ceil($totalRecords / $recordsPerPage); 
+
+		$data['detail'] = $this->Model_ViTri->getQuanHuyenById($maquanhuyen);
+		$data['thanhpho'] = $this->Model_ViTri->getById($this->Model_ViTri->getQuanHuyenById($maquanhuyen)[0]['MaTinhThanh']);
+		$data['totalPages'] = $totalPages;
+		$data['list'] = $this->Model_ViTri->getViTriGiaSu($maquanhuyen);
+		$data['title'] = "Danh sách gia sư";
+		return $this->load->view('Admin/View_ViTriGiaSu', $data);
+	}
+
+	public function pageTutor($maquanhuyen,$trang){
+		if(count($this->Model_ViTri->getQuanHuyenById($maquanhuyen)) <= 0){
+			$this->session->set_flashdata('error', 'Quận / huyện gia sư không tồn tại!');
+			return redirect(base_url('admin/vi-tri/'));
+		}
+
+		$data['title'] = "Danh sách gia sư";
+		$totalRecords = $this->Model_ViTri->checkNumberTutor($maquanhuyen);
+		$recordsPerPage = 10;
+		$totalPages = ceil($totalRecords / $recordsPerPage); 
+
+		if($trang < 1){
+			return redirect(base_url('admin/vi-tri/'.$maquanhuyen.'/gia-su/'));
+		}
+
+		if($trang > $totalPages){
+			return redirect(base_url('admin/vi-tri/'.$maquanhuyen.'/gia-su/'));
+		}
+
+		$data['detail'] = $this->Model_ViTri->getQuanHuyenById($maquanhuyen);
+		$data['thanhpho'] = $this->Model_ViTri->getById($this->Model_ViTri->getQuanHuyenById($maquanhuyen)[0]['MaTinhThanh']);
+
+		$start = ($trang - 1) * $recordsPerPage;
+		
+		if($start == 0){
+			$data['totalPages'] = $totalPages;
+			$data['list'] = $this->Model_ViTri->getViTriGiaSu($maquanhuyen);
+			return $this->load->view('Admin/View_ViTriGiaSu', $data);
+		}else{
+			$data['totalPages'] = $totalPages;
+			$data['list'] = $this->Model_ViTri->getViTriGiaSu($maquanhuyen,$start);
+			return $this->load->view('Admin/View_ViTriGiaSu', $data);
+		}
+	}
 }
 
 /* End of file ViTri.php */

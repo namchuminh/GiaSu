@@ -102,6 +102,29 @@ class Model_ViTri extends CI_Model {
 		return $this->db->query('INSERT INTO `giasu_quanhuyen` (MaQuanHuyen,MaGiaSu) VALUES(?,?)', array($maquanhuyen, $magiasu));
 	}
 
+	public function getQuanHuyenById($MaQuanHuyen){
+		$sql = "SELECT * FROM quanhuyen WHERE TrangThai = 1 AND MaQuanHuyen = ?";
+		$result = $this->db->query($sql, array($MaQuanHuyen));
+		return $result->result_array();
+	}
+
+	public function getCountGiaSuViTri($MaQuanHuyen){
+		return $this->db->query('SELECT * FROM `giasu_quanhuyen` WHERE MaQuanHuyen = ?', array($MaQuanHuyen))->result_array();
+	}
+
+	public function getViTriGiaSu($MaQuanHuyen,$start = 0, $end = 10){
+		$sql = "SELECT giasu.*, giasu_quanhuyen.*, tinhthanh.TenTinhThanh FROM giasu_quanhuyen, giasu, tinhthanh WHERE giasu_quanhuyen.MaGiaSu = giasu.MaGiaSu AND giasu.TrangThai = 1 AND giasu.MaTinhThanh = tinhthanh.MaTinhThanh AND giasu_quanhuyen.MaQuanHuyen = ? ORDER BY giasu.HoTen ASC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($MaQuanHuyen,$start, $end));
+		return $result->result_array();
+	}
+
+	public function checkNumberTutor($MaQuanHuyen)
+	{
+		$sql = "SELECT * FROM giasu_quanhuyen WHERE MaQuanHuyen = ?";
+		$result = $this->db->query($sql, array($MaQuanHuyen));
+		return $result->num_rows();
+	}
+
 }
 
 /* End of file Model_ChuyenMuc.php */
