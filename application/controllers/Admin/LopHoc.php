@@ -120,6 +120,11 @@ class LopHoc extends CI_Controller {
 			return redirect(base_url('admin/lop-hoc/'));
 		}
 
+		if($this->Model_LopHoc->checkNumberTutor($malophoc) <= 0){
+			$this->session->set_flashdata('error', 'Không có gia sư giảng dạy lớp học này!');
+			return redirect(base_url('admin/lop-hoc/'));
+		}
+
 		$totalRecords = $this->Model_LopHoc->checkNumberTutor($malophoc);
 		$recordsPerPage = 10;
 		$totalPages = ceil($totalRecords / $recordsPerPage); 

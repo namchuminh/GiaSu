@@ -125,6 +125,11 @@ class BoMon extends CI_Controller {
 			return redirect(base_url('admin/mon-hoc/'));
 		}
 
+		if($this->Model_BoMon->checkNumberTutor($mamonhoc) <= 0){
+			$this->session->set_flashdata('error', 'Không có gia sư giảng dạy môn học này!');
+			return redirect(base_url('admin/mon-hoc/'));
+		}
+
 		$totalRecords = $this->Model_BoMon->checkNumberTutor($mamonhoc);
 		$recordsPerPage = 10;
 		$totalPages = ceil($totalRecords / $recordsPerPage); 
