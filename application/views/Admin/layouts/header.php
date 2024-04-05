@@ -101,13 +101,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/san-pham/') ?>" class="nav-link">
+                <a href="<?php echo base_url('admin/lop-gia-su/') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh Sách</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/san-pham/them/') ?>" class="nav-link">
+                <a href="<?php echo base_url('admin/lop-gia-su/them/') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm Mới</p>
                 </a>

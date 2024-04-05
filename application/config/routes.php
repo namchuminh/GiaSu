@@ -82,3 +82,13 @@ $route['admin/vi-tri/(:any)/gia-su/(:any)/trang'] = 'Admin/ViTri/pageTutor/$1/$2
 
 
 
+$route['admin/lop-gia-su'] = 'Admin/LopGiaSu';
+$route['admin/lop-gia-su/(:any)/trang'] = 'Admin/LopGiaSu/page/$1';
+$route['admin/lop-gia-su/them'] = 'Admin/LopGiaSu/add';
+$route['admin/lop-gia-su/(:any)/sua'] = 'Admin/LopGiaSu/update/$1';
+$route['admin/lop-gia-su/(:any)/xoa'] = 'Admin/LopGiaSu/delete/$1';
+$route['admin/lop-gia-su/(:any)/them-gia-su'] = 'Admin/LopGiaSu/addTutor/$1';
+$route['admin/lop-gia-su/(:any)/gia-su'] = 'Admin/LopGiaSu/tutor/$1';
+$route['admin/lop-gia-su/(:any)/gia-su/(:any)/xoa'] = 'Admin/LopGiaSu/deleteTutor/$1/$2';
+
+

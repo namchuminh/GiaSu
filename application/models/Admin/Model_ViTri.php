@@ -35,6 +35,18 @@ class Model_ViTri extends CI_Model {
 		return $result->result_array();
 	}
 
+	public function getAllQuanHuyenAdd(){
+		$sql = "SELECT * FROM quanhuyen WHERE TrangThai = 1";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
+	public function getAllTinhThanhAdd(){
+		$sql = "SELECT * FROM tinhthanh WHERE TrangThai = 1";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
 	public function getById($MaTinhThanh){
 		$sql = "SELECT * FROM tinhthanh WHERE MaTinhThanh = ? AND TrangThai = 1";
 		$result = $this->db->query($sql, array($MaTinhThanh));

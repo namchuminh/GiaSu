@@ -35,6 +35,13 @@ class Model_LopHoc extends CI_Model {
 		return $result->result_array();
 	}
 
+	public function getAllAdd(){
+		$sql = "SELECT * FROM lophoc WHERE TrangThai = 1";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+	
+
 	public function getById($MaLopHoc){
 		$sql = "SELECT * FROM lophoc WHERE MaLopHoc = ? AND TrangThai = 1";
 		$result = $this->db->query($sql, array($MaLopHoc));

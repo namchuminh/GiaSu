@@ -35,6 +35,12 @@ class Model_BoMon extends CI_Model {
 		$result = $this->db->query($sql, array($start, $end));
 		return $result->result_array();
 	}
+	
+	public function getAllAdd(){
+		$sql = "SELECT * FROM bomon WHERE TrangThai = 1";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
 
 	public function getById($MaBoMon){
 		$sql = "SELECT * FROM bomon WHERE MaBoMon = ? AND TrangThai = 1";
