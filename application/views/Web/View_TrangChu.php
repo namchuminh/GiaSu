@@ -53,27 +53,18 @@
                 <div class="col-lg-6 col-md-8">
                 	<div class="header_topbar_info">
                     	<div class="download_wrap">
-                            <span class="me-3">Miễn phí giao hàng với đơn hàng lớn hơn <?php echo number_format($config[0]['MienPhiShip']); ?> VND</span>
+                            <span class="me-3">Website Tìm Kiếm Thuê Gia Sư Và Tìm Lớp Gia Sư Cho Phụ Huynh!</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-4">
                 	<div class="d-flex align-items-center justify-content-center justify-content-md-end">
-                        <?php if(isset($_SESSION['khachhang'])){ ?>
-                            <div class="header_offer">
-                                <a href="<?php echo base_url('khach-hang/'); ?>" style="color: white;"><?php echo $_SESSION['hoten']; ?></a>
-                            </div>
-                            <div class="download_wrap">
-                                <a href="<?php echo base_url('dang-xuat/'); ?>" style="color: white;">Đăng Xuất</a>
-                            </div>
-                        <?php }else{ ?>
-                            <div class="header_offer">
-                                <a href="<?php echo base_url('dang-nhap/'); ?>" style="color: white;">Đăng Nhập</a>
-                            </div>
-                            <div class="download_wrap">
-                                <a href="<?php echo base_url('dang-ky/'); ?>" style="color: white;">Đăng Ký</a>
-                            </div>
-                        <?php } ?>
+                        <div class="header_offer">
+                            <a href="<?php echo base_url('khach-hang/'); ?>" style="color: white;">Tìm Gia Sư</a>
+                        </div>
+                        <div class="download_wrap">
+                            <a href="<?php echo base_url('dang-xuat/'); ?>" style="color: white;">Đăng Ký Gia Sư</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,55 +78,15 @@
                     <img class="logo_dark" src="<?php echo $config[0]['Logo'] ?>" alt="logo" />
                 </a>
                 <div class="product_search_form rounded_input">
-                    <form action="<?php echo base_url('san-pham/') ?>">
+                    <form action="<?php echo base_url('mon-hoc/') ?>">
                         <div class="input-group">
-                            <input class="form-control" placeholder="Nhập tên sản phẩm ..." required="" name="s" type="text">
+                            <input class="form-control" placeholder="Nhập tên môn học ..." required="" name="s" type="text">
                             <button type="submit" class="search_btn3"><i class="fa fa-search"></i></button>
                         </div>
                     </form>
                 </div>
                 <ul class="navbar-nav attr-nav align-items-center">
-                    <li><a href="#" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">0</span></a></li>
-
-                    <li class="dropdown cart_dropdown">
-                        <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown">
-                            <i class="linearicons-bag2"></i>
-                            <span class="cart_count"><?php echo isset($_SESSION['numberCart']) ? $_SESSION['numberCart'] : 0; ?></span>
-                        </a>
-                        <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
-                            <ul class="cart_list">
-                                <?php if(isset($_SESSION['cart'])){ ?>
-                                    <?php foreach ($_SESSION['cart'] as $key => $value): ?>
-                                        <li>
-                                            <a href="<?php echo base_url('san-pham/'.$value['slug'].'/') ?>"><img src="<?php echo $value['image'] ?>" style="height: 80px"><?php echo $value['name']; ?></a>
-                                            <span class="cart_quantity"> <?php echo $value['number']; ?> x <span class="cart_amount"> <span class="price_symbole"></span></span><?php echo number_format($value['price']); ?>đ</span>
-                                        </li>
-                                    <?php endforeach ?>
-                                <?php } ?>
-                            </ul>
-                            <div class="cart_footer">
-                                <p class="cart_total"><strong>Tổng Tiền:</strong> <span class="cart_price"> </span><span class="price_symbole">
-                                    <?php 
-                                        if(isset($_SESSION['sumCart'])){ 
-                                            if(isset($_SESSION['saleCode'])){
-                                                echo number_format($_SESSION['sumCart'] + $_SESSION['saleCode']);
-                                            }else{
-                                                echo number_format($_SESSION['sumCart']);
-                                            }
-                                        }else{
-                                            echo 0;
-                                        }
-                                    ?>đ
-                                </span></p>
-                                <p class="cart_buttons">
-                                    <a href="<?php echo base_url('gio-hang/'); ?>" class="btn btn-fill-line view-cart">Giỏ Hàng</a>
-                                    <?php if(isset($_SESSION['cart'])){ ?>
-                                        <a href="<?php echo base_url('thanh-toan/'); ?>" class="btn btn-fill-out checkout">Thanh Toán</a>
-                                    <?php } ?>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -146,15 +97,15 @@
             	<div class="col-lg-3 col-md-4 col-sm-6 col-3">
                 	<div class="categories_wrap">
                         <button type="button" data-bs-toggle="collapse" data-bs-target="#navCatContent" aria-expanded="false" class="categories_btn">
-                            <i class="linearicons-menu"></i><span>Chuyên Mục </span>
+                            <i class="linearicons-menu"></i><span>DANH SÁCH Lớp Học </span>
                         </button>
                         <div id="navCatContent" class="nav_cat navbar collapse">
                             <ul> 
-                                <?php foreach ($category as $key => $value): ?>
+                                <?php foreach ($class as $key => $value): ?>
                                     <li>
-                                        <a class="dropdown-item nav-link nav_item" href="coming-soon.html">
-                                            <img style="width: 30px; height: 30px;" src="<?php echo $value['HinhAnh']; ?>">
-                                            <span style="color: black; font-family: system-ui; font-size:15px; margin-left: 10px;"><?php echo $value['TenChuyenMuc']; ?></span>
+                                        <a class="dropdown-item nav-link nav_item" href="<?php echo base_url('lop-hoc/'.$value['DuongDan'].'/'); ?>">
+                                            <img style="width: 30px; height: 30px;" src="<?php echo base_url('public/web/assets/images/presentation.png'); ?>">
+                                            <span style="color: black; font-family: system-ui; font-size:15px; margin-left: 10px;"><?php echo $value['TenLopHoc']; ?></span>
                                         </a>
                                     </li>
                                 <?php endforeach ?>
@@ -173,16 +124,22 @@
                         <div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
 							<ul class="navbar-nav">
                                 <li class="dropdown">
-                                    <a class="nav-link" href="<?php echo base_url(); ?>" style="font-family: system-ui;"><i class="linearicons-home"></i> Trang Chủ</a>   
+                                    <a class="nav-link" href="<?php echo base_url(); ?>" style="font-family: system-ui;">Trang Chủ</a>   
                                 </li>
                                 <li class="dropdown">
-                                    <a class="nav-link" href="<?php echo base_url('san-pham/'); ?>" style="font-family: system-ui;"><i class="linearicons-box"></i> Sản Phẩm</a>   
+                                    <a class="nav-link" href="<?php echo base_url('gia-su/'); ?>" style="font-family: system-ui;">Danh Sách Gia Sư</a>   
                                 </li>
                                 <li class="dropdown">
-                                    <a class="nav-link" href="<?php echo base_url('chuyen-muc/'); ?>" style="font-family: system-ui;"><i class="linearicons-layers"></i> Chuyên Mục</a>   
+                                    <a class="nav-link" href="<?php echo base_url('khu-vuc/'); ?>" style="font-family: system-ui;">Gia Sư Khu Vực</a>   
                                 </li>
-                                <li><a class="nav-link nav_item" href="<?php echo base_url('tin-tuc/'); ?>" style="font-family: system-ui;"><i class="linearicons-news"></i> Tin Tức</a></li> 
-                                <li><a class="nav-link nav_item" href="<?php echo base_url('lien-he/'); ?>" style="font-family: system-ui;"><i class="linearicons-phone-wave"></i> Liên Hệ</a></li> 
+                                <li class="dropdown">
+                                    <a class="nav-link" href="<?php echo base_url('mon-hoc/'); ?>" style="font-family: system-ui;">Gia Sư Môn Học</a>   
+                                </li>
+                                <li class="dropdown">
+                                    <a class="nav-link" href="<?php echo base_url('lop-hoc/'); ?>" style="font-family: system-ui;">Gia Sư Lớp Học</a>   
+                                </li>
+                                <li><a class="nav-link nav_item" href="<?php echo base_url('tin-tuc/'); ?>" style="font-family: system-ui;">Tin Tức</a></li> 
+                                <li><a class="nav-link nav_item" href="<?php echo base_url('lien-he/'); ?>" style="font-family: system-ui;">Liên Hệ</a></li> 
                             </ul>
                         </div>
                         <div class="contact_phone contact_support">
@@ -206,17 +163,17 @@
                     <div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <?php if(count($slide) >= 1){ ?>
-                                <a href="<?php echo base_url('chuyen-muc/'.$slide[0]['DuongDan'].'/') ?>" class="carousel-item active background_bg" data-img-src="<?php echo $slide[0]['HinhAnh'] ?>">
+                                <a href="<?php echo $slide[0]['DuongDan'] ?>" class="carousel-item active background_bg" data-img-src="<?php echo $slide[0]['HinhAnh'] ?>">
                                 </a>
                             <?php } ?>
 
                             <?php if(count($slide) >= 2){ ?>
-                                <a href="<?php echo base_url('chuyen-muc/'.$slide[1]['DuongDan'].'/') ?>" class="carousel-item background_bg" data-img-src="<?php echo $slide[1]['HinhAnh'] ?>">
+                                <a href="<?php echo $slide[1]['DuongDan'] ?>" class="carousel-item background_bg" data-img-src="<?php echo $slide[1]['HinhAnh'] ?>">
                                 </a>
                             <?php } ?>
 
                             <?php if(count($slide) >= 3){ ?>
-                                <a href="<?php echo base_url('chuyen-muc/'.$slide[2]['DuongDan'].'/') ?>" class="carousel-item background_bg" data-img-src="<?php echo $slide[2]['HinhAnh'] ?>">
+                                <a href="<?php echo $slide[2]['DuongDan'] ?>" class="carousel-item background_bg" data-img-src="<?php echo $slide[2]['HinhAnh'] ?>">
                                 </a>
                             <?php } ?>
                         </div>
@@ -249,7 +206,7 @@
             <?php if(count($banner1) >= 1){ ?>
                 <div class="col-xl-3 d-none d-xl-block">
                     <div class="sale-banner">
-                        <a class="hover_effect1" href="<?php echo base_url('chuyen-muc/'.$banner1[0]['DuongDan'].'/') ?>">
+                        <a class="hover_effect1" href="<?php echo $banner1[0]['DuongDan'] ?>">
                             <img src="<?php echo $banner1[0]['HinhAnh']; ?>" style="width: 387px; height: 538px;">
                         </a>
                     </div>
@@ -261,10 +218,10 @@
                     <div class="col-12">
                         <div class="heading_tab_header">
                             <div class="heading_s2">
-                                <h4>Sản Phẩm Mới</h4>
+                                <h4>Danh Sách Gia Sư Mới</h4>
                             </div>
                             <div class="view_all">
-                                <a href="<?php echo base_url('san-pham/'); ?>" class="text_default"><i class="linearicons-power"></i> <span>Xem Tất Cả</span></a>
+                                <a href="<?php echo base_url('gia-su/'); ?>" class="text_default"><i class="linearicons-power"></i> <span>Xem Tất Cả</span></a>
                             </div>
                         </div>
                     </div>
@@ -276,35 +233,24 @@
                                 <div class="item">
                                     <div class="product_wrap">
                                         <div class="product_img">
-                                            <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                <img src="<?php echo $value['AnhChinh']; ?>" alt="el_img2" style="height: 308px;">
-                                                <img class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2" style="height: 308px;">
+                                            <a href="<?php echo base_url('gia-su/'.$value['MaGiaSu'].'/') ?>">
+                                                <img src="<?php echo $value['AnhThe']; ?>" alt="el_img2" style="height: 250px;">
+                                                <img class="product_hover_img" src="<?php echo $value['AnhThe']; ?>" alt="el_hover_img2" style="height: 250px;">
                                             </a>
-                                            <div class="product_action_box">
-                                                <ul class="list_none pr_action_btn">
-                                                    <li class="add-to-cart" value="<?php echo $value['MaSanPham']; ?>"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                    <li><a href="#"><i class="icon-heart"></i></a></li>
-                                                </ul>
-                                            </div>
                                         </div>
                                         <div class="product_info">
-                                            <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham'] ?></a></h6>
+                                            <h6 class="product_title text-center"><a href="<?php echo base_url('gia-su/'.$value['MaGiaSu'].'/') ?>"><?php echo $value['HoTen'] ?></a></h6>
+                                            <hr>
                                             <div class="product_price">
-                                                <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                    <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                    <div class="on_sale">
-                                                        <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                    </div>
-                                                <?php } ?>
+                                                <ul>
+                                                    <li>Lương tối thiểu: <?php echo number_format($value['LuongToiThieu']); ?>đ</li>
+                                                    <li>Giới tính:  <?php echo $value['GioiTinh'] == 1 ? "Nam" : "Nữ"; ?></li>
+                                                    <li>Ngành:  <?php echo $value['ChuyenNganh']; ?></li>
+                                                    <li>Số buổi:  <?php echo $value['SoBuoiDay']; ?> dạy / 1 tuần</li>
+                                                </ul>
                                             </div>
-                                            <div class="rating_wrap">
-                                                <div class="rating">
-                                                    <div class="product_rate" style="width:100%"></div>
-                                                </div>
-                                                <span class="rating_num"></span>
-                                            </div>
+                                            <hr>
+                                            <button class="btn btn-fill-out w-100 add-to-cart" style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</button>
                                         </div>
                                     </div>
                                 </div>
@@ -325,7 +271,7 @@
             <?php if(count($banner2) >= 1){ ?>
                 <div class="col-md-4">
                     <div class="sale-banner mb-3 mb-md-4">
-                        <a class="hover_effect1" href="<?php echo base_url('chuyen-muc/'.$banner2[0]['DuongDan'].'/') ?>">
+                        <a class="hover_effect1" href="<?php echo $banner2[0]['DuongDan'] ?>">
                             <img src="<?php echo $banner2[0]['HinhAnh']; ?>" alt="shop_banner_img7">
                         </a>
                     </div>
@@ -335,7 +281,7 @@
             <?php if(count($banner2) >= 2){ ?>
                 <div class="col-md-4">
                     <div class="sale-banner mb-3 mb-md-4">
-                        <a class="hover_effect1" href="<?php echo base_url('chuyen-muc/'.$banner2[1]['DuongDan'].'/') ?>">
+                        <a class="hover_effect1" href="<?php echo $banner2[1]['DuongDan'] ?>">
                             <img src="<?php echo $banner2[1]['HinhAnh']; ?>" alt="shop_banner_img7">
                         </a>
                     </div>
@@ -345,7 +291,7 @@
             <?php if(count($banner2) >= 3){ ?>
                 <div class="col-md-4">
                     <div class="sale-banner mb-3 mb-md-4">
-                        <a class="hover_effect1" href="<?php echo base_url('chuyen-muc/'.$banner2[2]['DuongDan'].'/') ?>">
+                        <a class="hover_effect1" href="<?php $banner2[2]['DuongDan'] ?>">
                             <img src="<?php echo $banner2[2]['HinhAnh']; ?>" alt="shop_banner_img7">
                         </a>
                     </div>
@@ -364,7 +310,7 @@
             <?php if(count($banner3) >= 1){ ?>
                 <div class="col-xl-3 d-none d-xl-block">
                     <div class="sale-banner">
-                        <a class="hover_effect1" href="<?php echo base_url('chuyen-muc/'.$banner3[0]['DuongDan'].'/') ?>">
+                        <a class="hover_effect1" href="<?php echo $banner3[0]['DuongDan'] ?>">
                             <img src="<?php echo $banner3[0]['HinhAnh']; ?>" style="height: 538px;">
                         </a>
                     </div>
@@ -376,10 +322,10 @@
                     <div class="col-12">
                         <div class="heading_tab_header">
                             <div class="heading_s2">
-                                <h4>Đang Khuyến Mãi</h4>
+                                <h4>Gia Sư Theo Khu Vực</h4>
                             </div>
                             <div class="view_all">
-                            	<a href="<?php echo base_url('san-pham/'); ?>" class="text_default"><i class="linearicons-power"></i> <span>Xem Tất Cả</span></a>
+                            	<a href="<?php echo base_url('khu-vuc/'); ?>" class="text_default"><i class="linearicons-power"></i> <span>Xem Tất Cả</span></a>
                             </div>
                         </div>
                     </div>
@@ -387,39 +333,28 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="product_slider carousel_slider owl-carousel owl-theme dot_style1" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "991":{"items": "4"}}'>
-                            <?php foreach ($sale as $key => $value): ?>
+                            <?php foreach ($province as $key => $value): ?>
                                 <div class="item">
                                     <div class="product_wrap">
                                         <div class="product_img">
-                                            <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                <img src="<?php echo $value['AnhChinh']; ?>" alt="el_img2" style="height: 308px;">
-                                                <img class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2" style="height: 308px;">
+                                            <a href="<?php echo base_url('gia-su/'.$value['MaGiaSu'].'/') ?>">
+                                                <img src="<?php echo $value['AnhThe']; ?>" alt="el_img2" style="height: 250px;">
+                                                <img class="product_hover_img" src="<?php echo $value['AnhThe']; ?>" alt="el_hover_img2" style="height: 250px;">
                                             </a>
-                                            <div class="product_action_box">
-                                                <ul class="list_none pr_action_btn">
-                                                    <li class="add-to-cart" value="<?php echo $value['MaSanPham']; ?>"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                    <li><a href="#"><i class="icon-heart"></i></a></li>
-                                                </ul>
-                                            </div>
                                         </div>
                                         <div class="product_info">
-                                            <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham'] ?></a></h6>
+                                            <h6 class="product_title text-center"><a href="<?php echo base_url('gia-su/'.$value['MaGiaSu'].'/') ?>"><?php echo $value['HoTen'] ?></a></h6>
+                                            <hr>
                                             <div class="product_price">
-                                                <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                    <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                    <div class="on_sale">
-                                                        <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                    </div>
-                                                <?php } ?>
+                                                <ul>
+                                                    <li>Khu Vực:  <?php echo $value['TenTinhThanh']; ?></li>
+                                                    <li>Lương tối thiểu: <?php echo number_format($value['LuongToiThieu']); ?>đ</li>
+                                                    <li>Ngành:  <?php echo $value['ChuyenNganh']; ?></li>
+                                                    <li>Số buổi:  <?php echo $value['SoBuoiDay']; ?> dạy / 1 tuần</li>
+                                                </ul>
                                             </div>
-                                            <div class="rating_wrap">
-                                                <div class="rating">
-                                                    <div class="product_rate" style="width:100%"></div>
-                                                </div>
-                                                <span class="rating_num"></span>
-                                            </div>
+                                            <hr>
+                                            <button class="btn btn-fill-out w-100 add-to-cart" style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</button>
                                         </div>
                                     </div>
                                 </div>
@@ -434,397 +369,58 @@
 <!-- END SECTION SHOP -->
 
 <!-- START SECTION SHOP -->
-<div class="section pt-0 pb_20">
-	<div class="custom-container">
-    	<div class="row">
-            <?php if((count($popular) >= 1)){ ?>
-            	<div class="col-lg-4">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="heading_tab_header">
-                                <div class="heading_s2">
-                                    <h4>Sản Phẩm Nổi Bật</h4>
-                                </div>
+<div class="section small_pt small_pb">
+    <div class="custom-container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading_tab_header">
+                            <div class="heading_s2">
+                                <h4>Gia Sư Theo Môn Học</h4>
+                            </div>
+                            <div class="view_all">
+                                <a href="<?php echo base_url('mon-hoc/'); ?>" class="text_default"><i class="linearicons-power"></i> <span>Xem Tất Cả</span></a>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="product_slider carousel_slider product_list owl-carousel owl-theme nav_style5" data-nav="true" data-dots="false" data-margin="20" data-responsive='{"0":{"items": "1"}, "380":{"items": "1"}, "640":{"items": "2"}, "991":{"items": "1"}}'>
-
-                                    <div class="item">
-                                        <?php foreach ($popular as $key => $value): ?>
-                                            <div class="product_wrap">
-                                                <div class="product_img">
-                                                    <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                        <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                        <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                    </a>
-                                                </div>
-                                                <div class="product_info">
-                                                    <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                    <div class="product_price">
-                                                        <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                        <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                        <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                            <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                            <div class="on_sale">
-                                                                <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                            </div>
-                                                        <?php } ?>
-                                                    </div>
-                                                    <div class="rating_wrap">
-                                                        <div class="rating">
-                                                            <div class="product_rate" style="width:100%"></div>
-                                                        </div>
-                                                        <span class="rating_num"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php if($key == 2){ break; } ?>
-                                        <?php endforeach ?>
-                                    </div>
-
-                                    <?php if(count($popular) >= 4){ ?>
-                                        <div class="item">
-                                            <?php foreach ($popular as $key => $value): ?>
-                                                <?php if(($key >= 3) && ($key <= 5)){ ?>
-                                                    <div class="product_wrap">
-                                                        <div class="product_img">
-                                                            <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                                <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                                <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                            <div class="product_price">
-                                                                <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                                <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                                <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                                    <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                                    <div class="on_sale">
-                                                                        <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                            <div class="rating_wrap">
-                                                                <div class="rating">
-                                                                    <div class="product_rate" style="width:100%"></div>
-                                                                </div>
-                                                                <span class="rating_num"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php }else{ ?>
-                                                    <?php continue; ?>
-                                                <?php } ?>
-                                            <?php endforeach ?>
-                                        </div>
-                                    <?php } ?>
-
-                                    <?php if(count($popular) >= 6){ ?>
-                                        <div class="item">
-                                            <?php foreach ($popular as $key => $value): ?>
-                                                <?php if($key >= 6){ ?>
-                                                    <div class="product_wrap">
-                                                        <div class="product_img">
-                                                            <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                                <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                                <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                            <div class="product_price">
-                                                                <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                                <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                                <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                                    <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                                    <div class="on_sale">
-                                                                        <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                            <div class="rating_wrap">
-                                                                <div class="rating">
-                                                                    <div class="product_rate" style="width:100%"></div>
-                                                                </div>
-                                                                <span class="rating_num"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php }else{ ?>
-                                                    <?php continue; ?>
-                                                <?php } ?>
-                                            <?php endforeach ?>
-                                        </div>
-                                    <?php } ?>
-
-                            </div>
-                        </div>
-                    </div>
-            	</div>
-            <?php } ?>
-
-            <?php if((count($hot) >= 1)){ ?>
-                <div class="col-lg-4">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="heading_tab_header">
-                                <div class="heading_s2">
-                                    <h4>Sản Phẩm Hot</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="product_slider carousel_slider product_list owl-carousel owl-theme nav_style5" data-nav="true" data-dots="false" data-margin="20" data-responsive='{"0":{"items": "1"}, "380":{"items": "1"}, "640":{"items": "2"}, "991":{"items": "1"}}'>
-                                    <div class="item">
-                                        <?php foreach ($hot as $key => $value): ?>
-                                            <div class="product_wrap">
-                                                <div class="product_img">
-                                                    <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                        <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                        <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                    </a>
-                                                </div>
-                                                <div class="product_info">
-                                                    <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                    <div class="product_price">
-                                                        <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                        <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                        <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                            <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                            <div class="on_sale">
-                                                                <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                            </div>
-                                                        <?php } ?>
-                                                    </div>
-                                                    <div class="rating_wrap">
-                                                        <div class="rating">
-                                                            <div class="product_rate" style="width:100%"></div>
-                                                        </div>
-                                                        <span class="rating_num"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php if($key == 2){ break; } ?>
-                                        <?php endforeach ?>
-                                    </div>
-
-                                    <?php if(count($hot) >= 4){ ?>
-                                        <div class="item">
-                                            <?php foreach ($hot as $key => $value): ?>
-                                                <?php if(($key >= 3) && ($key <= 5)){ ?>
-                                                    <div class="product_wrap">
-                                                        <div class="product_img">
-                                                            <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                                <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                                <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                            <div class="product_price">
-                                                                <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                                <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                                <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                                    <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                                    <div class="on_sale">
-                                                                        <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                            <div class="rating_wrap">
-                                                                <div class="rating">
-                                                                    <div class="product_rate" style="width:100%"></div>
-                                                                </div>
-                                                                <span class="rating_num"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php }else{ ?>
-                                                    <?php continue; ?>
-                                                <?php } ?>
-                                            <?php endforeach ?>
-                                        </div>
-                                    <?php } ?>
-
-                                    <?php if(count($hot) >= 6){ ?>
-                                        <div class="item">
-                                            <?php foreach ($hot as $key => $value): ?>
-                                                <?php if($key >= 6){ ?>
-                                                    <div class="product_wrap">
-                                                        <div class="product_img">
-                                                            <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                                <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                                <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                            <div class="product_price">
-                                                                <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                                <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                                <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                                    <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                                    <div class="on_sale">
-                                                                        <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                            <div class="rating_wrap">
-                                                                <div class="rating">
-                                                                    <div class="product_rate" style="width:100%"></div>
-                                                                </div>
-                                                                <span class="rating_num"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php }else{ ?>
-                                                    <?php continue; ?>
-                                                <?php } ?>
-                                            <?php endforeach ?>
-                                        </div>
-                                    <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-            	</div>
-            <?php } ?>
-            <?php if((count($suggest) >= 1)){ ?>
-                <div class="col-lg-4">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="heading_tab_header">
-                                <div class="heading_s2">
-                                    <h4>Dành Cho Bạn</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="product_slider carousel_slider product_list owl-carousel owl-theme nav_style5" data-nav="true" data-dots="false"  data-margin="20" data-responsive='{"0":{"items": "1"}, "380":{"items": "1"}, "640":{"items": "2"}, "991":{"items": "1"}}'>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product_slider carousel_slider owl-carousel owl-theme dot_style1" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "991":{"items": "5"}}'>
+                            <?php foreach ($subject as $key => $value): ?>
                                 <div class="item">
-                                        <?php foreach ($suggest as $key => $value): ?>
-                                            <div class="product_wrap">
-                                                <div class="product_img">
-                                                    <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                        <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                        <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                    </a>
-                                                </div>
-                                                <div class="product_info">
-                                                    <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                    <div class="product_price">
-                                                        <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                        <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                        <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                            <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                            <div class="on_sale">
-                                                                <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                            </div>
-                                                        <?php } ?>
-                                                    </div>
-                                                    <div class="rating_wrap">
-                                                        <div class="rating">
-                                                            <div class="product_rate" style="width:100%"></div>
-                                                        </div>
-                                                        <span class="rating_num"></span>
-                                                    </div>
-                                                </div>
+                                    <div class="product_wrap">
+                                        <div class="product_img">
+                                            <a href="<?php echo base_url('gia-su/'.$value['MaGiaSu'].'/') ?>">
+                                                <img src="<?php echo $value['AnhThe']; ?>" alt="el_img2" style="height: 250px;">
+                                                <img class="product_hover_img" src="<?php echo $value['AnhThe']; ?>" alt="el_hover_img2" style="height: 250px;">
+                                            </a>
+                                        </div>
+                                        <div class="product_info">
+                                            <h6 class="product_title text-center"><a href="<?php echo base_url('gia-su/'.$value['MaGiaSu'].'/') ?>"><?php echo $value['HoTen'] ?></a></h6>
+                                            <hr>
+                                            <div class="product_price">
+                                                <ul>
+                                                    <li>Môn Học:  <?php echo $value['TenBoMon']; ?></li>
+                                                    <li>Lương tối thiểu: <?php echo number_format($value['LuongToiThieu']); ?>đ</li>
+                                                    <li>Ngành:  <?php echo $value['ChuyenNganh']; ?></li>
+                                                    <li>Số buổi:  <?php echo $value['SoBuoiDay']; ?> dạy / 1 tuần</li>
+                                                </ul>
                                             </div>
-                                            <?php if($key == 2){ break; } ?>
-                                        <?php endforeach ?>
+                                            <hr>
+                                            <button class="btn btn-fill-out w-100 add-to-cart" style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</button>
+                                        </div>
                                     </div>
-
-                                    <?php if(count($suggest) >= 4){ ?>
-                                        <div class="item">
-                                            <?php foreach ($suggest as $key => $value): ?>
-                                                <?php if(($key >= 3) && ($key <= 5)){ ?>
-                                                    <div class="product_wrap">
-                                                        <div class="product_img">
-                                                            <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                                <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                                <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                            <div class="product_price">
-                                                                <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                                <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                                <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                                    <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                                    <div class="on_sale">
-                                                                        <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                            <div class="rating_wrap">
-                                                                <div class="rating">
-                                                                    <div class="product_rate" style="width:100%"></div>
-                                                                </div>
-                                                                <span class="rating_num"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php }else{ ?>
-                                                    <?php continue; ?>
-                                                <?php } ?>
-                                            <?php endforeach ?>
-                                        </div>
-                                    <?php } ?>
-
-                                    <?php if(count($suggest) >= 6){ ?>
-                                        <div class="item">
-                                            <?php foreach ($suggest as $key => $value): ?>
-                                                <?php if($key >= 6){ ?>
-                                                    <div class="product_wrap">
-                                                        <div class="product_img">
-                                                            <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>">
-                                                                <img style="height: 161px;" src="<?php echo $value['AnhChinh']; ?>" alt="el_img2">
-                                                                <img style="height: 161px;" class="product_hover_img" src="<?php echo explode('#', $value['HinhAnh'])[0]; ?>" alt="el_hover_img2">
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_info">
-                                                            <h6 class="product_title"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                                            <div class="product_price">
-                                                                <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                                                <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                                                <?php if($value['GiaGoc'] != $value['GiaBan']){ ?>
-                                                                    <?php $phan_tram_khuyen_mai = ($value['GiaGoc'] - $value['GiaBan']) / $value['GiaGoc'] * 100; ?>
-                                                                    <div class="on_sale">
-                                                                        <span>Giảm <?php echo round($phan_tram_khuyen_mai, 0); ?>%</span>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                            <div class="rating_wrap">
-                                                                <div class="rating">
-                                                                    <div class="product_rate" style="width:100%"></div>
-                                                                </div>
-                                                                <span class="rating_num"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php }else{ ?>
-                                                    <?php continue; ?>
-                                                <?php } ?>
-                                            <?php endforeach ?>
-                                        </div>
-                                    <?php } ?>
-                            </div>
+                                </div>
+                            <?php endforeach ?>
                         </div>
                     </div>
-        	    </div>
-            <?php } ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<!-- END SECTION SHOP -->
 
 
 </div>
@@ -843,8 +439,8 @@
                                     <i class="flaticon-shipped"></i>
                                 </div>
                                 <div class="icon_box_content">
-                                    <h5>Giao Hàng Miễn Phí</h5>
-                                    <p>Miễn phí giao hàng với đơn hàng từ <?php echo number_format($config[0]['MienPhiShip']); ?> VND</p>
+                                    <h5>Gia Sư Uy Tín</h5>
+                                    <p>Tất cả gia sư thuộc hệ thống đều có chuyên môn cao và trách nhiệm!</p>
                                 </div>
                             </div>
                         </div>
@@ -854,8 +450,8 @@
                                     <i class="flaticon-money-back"></i>
                                 </div>
                                 <div class="icon_box_content">
-                                    <h5>30 Ngày Hoàn Trả</h5>
-                                    <p>Cho phép hoàn trả trong 30 ngày</p>
+                                    <h5>Chi Phí Phù Hợp</h5>
+                                    <p>Mọi khoản thu về thuê gia sư trên hệ thống đều ở mức bình dân!</p>
                                 </div>
                             </div>
                         </div>
@@ -866,7 +462,7 @@
                                 </div>
                                 <div class="icon_box_content">
                                     <h5>Hỗ trợ 24/7</h5>
-                                    <p>Luôn sẵn sàng hỗ trợ khách hàng mọi lúc</p>
+                                    <p>Luôn sẵn sàng hỗ trợ người học mọi lúc</p>
                                 </div>
                             </div>
                         </div>
@@ -911,11 +507,11 @@
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
                     <div class="widget">
-                        <h6 class="widget_title">Chuyên Mục</h6>
+                        <h6 class="widget_title">Lớp Học</h6>
                         <ul class="widget_links">
-                            <?php foreach ($category as $key => $value): ?>
+                            <?php foreach ($class as $key => $value): ?>
                                 <?php if($key == 5){ break; } ?>
-                                <li><a href="<?php echo base_url('chuyen-muc/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TenChuyenMuc']; ?></a></li>
+                                <li><a href="<?php echo base_url('lop-hoc/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TenLopHoc']; ?></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>
@@ -956,6 +552,15 @@
     </div>
 </footer>
 <!-- END FOOTER -->
+
+
+<style type="text/css">
+    .carousel_slider li{
+        color: #333;
+        font-size: 14px;
+        line-height: 30px;
+    }
+</style>
 
 <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a> 
 

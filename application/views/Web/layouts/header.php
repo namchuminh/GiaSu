@@ -54,27 +54,18 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="header_topbar_info">
                         <div class="download_wrap">
-                            <span class="me-3">Miễn phí giao hàng với đơn hàng lớn hơn 50,000 VND</span>
+                            <span class="me-3">Website Tìm Kiếm Thuê Gia Sư Và Tìm Lớp Gia Sư Cho Phụ Huynh!</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-4">
                     <div class="d-flex align-items-center justify-content-center justify-content-md-end">
-                        <?php if(isset($_SESSION['khachhang'])){ ?>
-                            <div class="header_offer">
-                                <a href="<?php echo base_url('khach-hang/'); ?>" style="color: white;"><?php echo $_SESSION['hoten']; ?></a>
-                            </div>
-                            <div class="download_wrap">
-                                <a href="<?php echo base_url('dang-xuat/'); ?>" style="color: white;">Đăng Xuất</a>
-                            </div>
-                        <?php }else{ ?>
-                            <div class="header_offer">
-                                <a href="<?php echo base_url('dang-nhap/'); ?>" style="color: white;">Đăng Nhập</a>
-                            </div>
-                            <div class="download_wrap">
-                                <a href="<?php echo base_url('dang-ky/'); ?>" style="color: white;">Đăng Ký</a>
-                            </div>
-                        <?php } ?>
+                        <div class="header_offer">
+                            <a href="<?php echo base_url('khach-hang/'); ?>" style="color: white;">Tìm Gia Sư</a>
+                        </div>
+                        <div class="download_wrap">
+                            <a href="<?php echo base_url('dang-xuat/'); ?>" style="color: white;">Đăng Ký Gia Sư</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,72 +84,33 @@
                 <div class="collapse navbar-collapse justify-content-center " id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="dropdown">
-                            <a class="nav-link" href="<?php echo base_url(); ?>" style="font-family: system-ui;"><i class="linearicons-home"></i> Trang Chủ</a>   
+                            <a class="nav-link" href="<?php echo base_url(); ?>" style="font-family: system-ui;">Trang Chủ</a>   
                         </li>
                         <li class="dropdown">
-                            <a class="nav-link" href="<?php echo base_url('san-pham/'); ?>" style="font-family: system-ui;"><i class="linearicons-box"></i> Sản Phẩm</a>   
+                            <a class="nav-link" href="<?php echo base_url('gia-su/'); ?>" style="font-family: system-ui;">Danh Sách Gia Sư</a>   
                         </li>
                         <li class="dropdown">
-                            <a class="nav-link" href="<?php echo base_url('chuyen-muc/'); ?>" style="font-family: system-ui;"><i class="linearicons-layers"></i> Chuyên Mục</a>   
+                            <a class="nav-link" href="<?php echo base_url('khu-vuc/'); ?>" style="font-family: system-ui;">Gia Sư Khu Vực</a>   
                         </li>
-                        <li><a class="nav-link nav_item" href="<?php echo base_url('tin-tuc/'); ?>" style="font-family: system-ui;"><i class="linearicons-news"></i> Tin Tức</a></li> 
-                        <li><a class="nav-link nav_item" href="<?php echo base_url('lien-he/'); ?>" style="font-family: system-ui;"><i class="linearicons-phone-wave"></i> Liên Hệ</a></li> 
+                        <li class="dropdown">
+                            <a class="nav-link" href="<?php echo base_url('mon-hoc/'); ?>" style="font-family: system-ui;">Gia Sư Môn Học</a>   
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link" href="<?php echo base_url('lop-hoc/'); ?>" style="font-family: system-ui;">Gia Sư Lớp Học</a>   
+                        </li>
+                        <li><a class="nav-link nav_item" href="<?php echo base_url('tin-tuc/'); ?>" style="font-family: system-ui;">Tin Tức</a></li> 
+                        <li><a class="nav-link nav_item" href="<?php echo base_url('lien-he/'); ?>" style="font-family: system-ui;">Liên Hệ</a></li> 
                     </ul>
                 </div>
                 <ul class="navbar-nav attr-nav align-items-center">
                     <li><a href="javascript:void(0);" class="nav-link search_trigger"><i class="linearicons-magnifier"></i></a>
                         <div class="search_wrap">
                             <span class="close-search"><i class="ion-ios-close-empty"></i></span>
-                            <form action="<?php echo base_url('san-pham/'); ?>">
-                                <input type="text" placeholder="Nhập tên sản phẩm" class="form-control" name="s" id="search_input">
+                            <form action="<?php echo base_url('mon-hoc/'); ?>">
+                                <input type="text" placeholder="Nhập tên môn học" class="form-control" name="s" id="search_input">
                                 <button type="submit" class="search_icon"><i class="ion-ios-search-strong"></i></button>
                             </form>
                         </div><div class="search_overlay"></div>
-                    </li>
-                    <li class="dropdown cart_dropdown">
-                        <a class="nav-link cart_trigger" href="#">
-                            <i class="linearicons-heart"></i>
-                            <span class="wishlist_count">2</span>
-                        </a>
-                    </li>
-                    <li class="dropdown cart_dropdown">
-                        <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown">
-                            <i class="linearicons-bag2"></i>
-                            <span class="cart_count"><?php echo isset($_SESSION['numberCart']) ? $_SESSION['numberCart'] : 0; ?></span>
-                        </a>
-                        <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
-                            <ul class="cart_list">
-                                <?php if(isset($_SESSION['cart'])){ ?>
-                                    <?php foreach ($_SESSION['cart'] as $key => $value): ?>
-                                        <li>
-                                            <a href="<?php echo base_url('san-pham/'.$value['slug'].'/') ?>"><img src="<?php echo $value['image'] ?>" style="height: 80px"><?php echo $value['name']; ?></a>
-                                            <span class="cart_quantity"> <?php echo $value['number']; ?> x <span class="cart_amount"> <span class="price_symbole"></span></span><?php echo number_format($value['price']); ?>đ</span>
-                                        </li>
-                                    <?php endforeach ?>
-                                <?php } ?>
-                            </ul>
-                            <div class="cart_footer">
-                                <p class="cart_total"><strong>Tổng Tiền:</strong> <span class="cart_price"> </span><span class="price_symbole">
-                                    <?php 
-                                        if(isset($_SESSION['sumCart'])){ 
-                                            if(isset($_SESSION['saleCode'])){
-                                                echo number_format($_SESSION['sumCart'] + $_SESSION['saleCode']);
-                                            }else{
-                                                echo number_format($_SESSION['sumCart']);
-                                            }
-                                        }else{
-                                            echo 0;
-                                        }
-                                    ?>đ
-                                </span></p>
-                                <p class="cart_buttons">
-                                    <a href="<?php echo base_url('gio-hang/'); ?>" class="btn btn-fill-line view-cart">Giỏ Hàng</a>
-                                    <?php if(isset($_SESSION['cart'])){ ?>
-                                        <a href="<?php echo base_url('thanh-toan/'); ?>" class="btn btn-fill-out checkout">Thanh Toán</a>
-                                    <?php } ?>
-                                </p>
-                            </div>
-                        </div>
                     </li>
                 </ul>
             </nav>

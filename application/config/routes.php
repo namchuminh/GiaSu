@@ -92,3 +92,11 @@ $route['admin/lop-gia-su/(:any)/gia-su'] = 'Admin/LopGiaSu/tutor/$1';
 $route['admin/lop-gia-su/(:any)/gia-su/(:any)/xoa'] = 'Admin/LopGiaSu/deleteTutor/$1/$2';
 
 
+$route['gia-su'] = 'Web/GiaSu';
+$route['gia-su/trang/(:any)'] = 'Web/GiaSu/page/$1';
+
+
+$route['khu-vuc'] = 'Web/KhuVuc';
+$route['khu-vuc/trang/(:any)'] = 'Web/KhuVuc/page/$1';
+$route['khu-vuc/(:any)'] = 'Web/KhuVuc/detail/$1';
+$route['khu-vuc/(:any)/trang/(:any)'] = 'Web/KhuVuc/detailPage/$1/$2';

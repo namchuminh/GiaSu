@@ -7,8 +7,9 @@ class TrangChu extends MY_Controller {
 		parent::__construct();
 		$data = array();
 		$this->load->model('Web/Model_GiaoDien');
-		$this->load->model('Web/Model_SanPham');
+		$this->load->model('Web/Model_GiaSu');
 		$this->load->model('Web/Model_ChuyenMuc');
+		$this->load->model('Web/Model_LopHoc');
 	}
 
 	public function index()
@@ -18,12 +19,10 @@ class TrangChu extends MY_Controller {
 		$data['banner1'] = $this->Model_GiaoDien->getByType(2);
 		$data['banner2'] = $this->Model_GiaoDien->getByType(3);
 		$data['banner3'] = $this->Model_GiaoDien->getByType(4);
-		$data['new'] = $this->Model_SanPham->getByType(1);
-		$data['sale'] = $this->Model_SanPham->getByType(2);
-		$data['popular'] = $this->Model_SanPham->getByType(3);
-		$data['hot'] = $this->Model_SanPham->getByType(4);
-		$data['suggest'] = $this->Model_SanPham->getSuggest();
-		$data['category'] = $this->Model_ChuyenMuc->getAll();
+		$data['new'] = $this->Model_GiaSu->getByType(1);
+		$data['province'] = $this->Model_GiaSu->getByType(2);
+		$data['subject'] = $this->Model_GiaSu->getByType(3);
+		$data['class'] = $this->Model_LopHoc->getAll();
 		return $this->load->view('Web/View_TrangChu', $data);
 	}
 

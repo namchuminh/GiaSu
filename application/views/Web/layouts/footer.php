@@ -1,6 +1,7 @@
 </div>
 <!-- END MAIN CONTENT -->
 
+
 <!-- START FOOTER -->
 <div class="middle_footer">
     <div class="custom-container">
@@ -14,8 +15,8 @@
                                     <i class="flaticon-shipped"></i>
                                 </div>
                                 <div class="icon_box_content">
-                                    <h5>Giao Hàng Miễn Phí</h5>
-                                    <p>Miễn phí giao hàng với đơn hàng từ <?php echo number_format($config[0]['MienPhiShip']); ?> VND</p>
+                                    <h5>Gia Sư Uy Tín</h5>
+                                    <p>Tất cả gia sư thuộc hệ thống đều có chuyên môn cao và trách nhiệm!</p>
                                 </div>
                             </div>
                         </div>
@@ -25,8 +26,8 @@
                                     <i class="flaticon-money-back"></i>
                                 </div>
                                 <div class="icon_box_content">
-                                    <h5>30 Ngày Hoàn Trả</h5>
-                                    <p>Cho phép hoàn trả trong 30 ngày</p>
+                                    <h5>Chi Phí Phù Hợp</h5>
+                                    <p>Mọi khoản thu về thuê gia sư trên hệ thống đều ở mức bình dân!</p>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +38,7 @@
                                 </div>
                                 <div class="icon_box_content">
                                     <h5>Hỗ trợ 24/7</h5>
-                                    <p>Luôn sẵn sàng hỗ trợ khách hàng mọi lúc</p>
+                                    <p>Luôn sẵn sàng hỗ trợ người học mọi lúc</p>
                                 </div>
                             </div>
                         </div>
