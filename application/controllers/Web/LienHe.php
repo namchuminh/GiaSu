@@ -14,25 +14,19 @@ class LienHe extends MY_Controller {
 	{
 		$data['title'] = "Liên hệ";
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
-			if(!$this->session->has_userdata('khachhang')){
-				$newdata = array(
-					'lienhe' => TRUE
-				);
-				$this->session->set_userdata($newdata);
-				$this->session->set_flashdata('redirect', 'Vui lòng đăng nhập để gửi liên hệ!');
-				return redirect(base_url('dang-nhap/'));
-			}
 
-			$makhachhang = $this->session->userdata('makhachhang');
+			$tenkhachhang = $this->input->post('tenkhachhang');
+			$email = $this->input->post('email');
+			$sodienthoai = $this->input->post('sodienthoai');
 			$tieude = $this->input->post('tieude');
 			$noidung = $this->input->post('noidung');
 
-			if($tieude == "" || $noidung == ""){
+			if($tieude == "" || $noidung == "" || $email == "" || $sodienthoai == ""){
 				$data['error'] = "Vui lòng nhập đủ thông tin liên hệ!";
 				return $this->load->view('Web/View_LienHe', $data);
 			}
 
-			$this->Model_LienHe->insert($makhachhang,$tieude,$noidung);
+			$this->Model_LienHe->insert($tenkhachhang,$sodienthoai,$email,$tieude,$noidung);
 			$data['success'] = "Cảm ơn bạn đã gửi liên hệ với chúng tôi!";
 			return $this->load->view('Web/View_LienHe', $data);
 		}

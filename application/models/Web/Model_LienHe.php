@@ -10,9 +10,9 @@ class Model_LienHe extends CI_Model {
 		
 	}
 
-	public function insert($makhachhang,$tieude,$noidung){
-		$sql = "INSERT INTO `lienhe`(`MaKhachHang`, `TieuDe`, `NoiDung`) VALUES (?, ?, ?)";
-		$result = $this->db->query($sql, array($makhachhang,$tieude,$noidung));
+	public function insert($tenkhachhang,$sodienthoai,$email,$tieude,$noidung){
+		$sql = "INSERT INTO `lienhe`(`TenKhachHang`,`SoDienThoai`,`Email`,`TieuDe`, `NoiDung`) VALUES (?, ?, ?, ?, ?)";
+		$result = $this->db->query($sql, array($tenkhachhang,$sodienthoai,$email,$tieude,$noidung));
 		return $result;
 	}
 }

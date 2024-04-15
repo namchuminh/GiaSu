@@ -64,7 +64,7 @@
                             <a href="<?php echo base_url('khach-hang/'); ?>" style="color: white;">Tìm Gia Sư</a>
                         </div>
                         <div class="download_wrap">
-                            <a href="<?php echo base_url('dang-xuat/'); ?>" style="color: white;">Đăng Ký Gia Sư</a>
+                            <a href="<?php echo base_url('dang-xuat/'); ?>" style="color: white;">Làm Gia Sư</a>
                         </div>
                     </div>
                 </div>

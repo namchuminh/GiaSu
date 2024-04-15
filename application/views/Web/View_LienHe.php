@@ -75,25 +75,13 @@
                     <form method="post">
                         <div class="row">
                             <div class="form-group col-md-6 mb-3">
-                                <?php if(isset($_SESSION['khachhang'])){ ?>
-                                    <input required placeholder="Họ tên *" class="form-control" type="text" value="<?php echo $_SESSION['hoten']; ?>">
-                                <?php }else{ ?>
-                                    <input placeholder="Họ tên *" class="form-control" type="text">
-                                <?php } ?>
+                                <input placeholder="Họ tên *" class="form-control" type="text" name="tenkhachhang">
                             </div>
                             <div class="form-group col-md-6 mb-3">
-                                <?php if(isset($_SESSION['khachhang'])){ ?>
-                                    <input required placeholder="Email *" class="form-control" type="email" value="<?php echo $_SESSION['email']; ?>">
-                                <?php }else{ ?>
-                                    <input placeholder="Email *" class="form-control" type="email">
-                                <?php } ?>
+                                <input placeholder="Email *" class="form-control" type="email" name="email">
                             </div>
                             <div class="form-group col-md-6 mb-3">
-                                <?php if(isset($_SESSION['khachhang'])){ ?>
-                                    <input required placeholder="Số điện thoại *" class="form-control" type="text" value="<?php echo $_SESSION['sodienthoai']; ?>">
-                                <?php }else{ ?>
-                                    <input placeholder="Số điện thoại *" class="form-control" type="text">
-                                <?php } ?>
+                                <input placeholder="Số điện thoại *" class="form-control" type="text" name="sodienthoai">
                             </div>
                             <div class="form-group col-md-6 mb-3">
                                 <input placeholder="Tiêu đề *" class="form-control" name="tieude">

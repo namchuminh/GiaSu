@@ -6,16 +6,20 @@ class TinTuc extends MY_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Web/Model_TinTuc');
-		$this->load->model('Web/Model_SanPham');
-		$this->load->model('Web/Model_GiaoDien');
+		$this->load->model('Web/Model_GiaSu');
+        $this->load->model('Web/Model_GiaoDien');
+        $this->load->model('Web/Model_LopHoc');
+        $this->load->model('Web/Model_BoMon');
+        $this->load->model('Web/Model_KhuVuc');
 	}
 
 	public function index()
 	{
 		$data['title'] = "Danh sách tin tức";
 		$data['banner1'] = $this->Model_GiaoDien->getByType(2);
-		$data['popular'] = $this->Model_SanPham->getByType(3);
-		$data['categoryNumber'] = $this->Model_SanPham->getCategoryNumber();
+		$data['class'] = $this->Model_LopHoc->getAll();
+        $data['subject'] = $this->Model_BoMon->getAll();
+        $data['province'] = $this->Model_KhuVuc->getAll();
 
 		if(isset($_GET['s']) && !empty($_GET['s'])){
 			$data['totalPages'] = 0;
@@ -35,8 +39,9 @@ class TinTuc extends MY_Controller {
 	public function page($trang){
 		$data['title'] = "Danh sách tin tức";
 		$data['banner1'] = $this->Model_GiaoDien->getByType(2);
-		$data['popular'] = $this->Model_SanPham->getByType(3);
-		$data['categoryNumber'] = $this->Model_SanPham->getCategoryNumber();
+		$data['class'] = $this->Model_LopHoc->getAll();
+        $data['subject'] = $this->Model_BoMon->getAll();
+        $data['province'] = $this->Model_KhuVuc->getAll();
 		
 		$totalRecords = $this->Model_TinTuc->checkNumber();
 		$recordsPerPage = 6;
@@ -72,7 +77,9 @@ class TinTuc extends MY_Controller {
 		$data['title'] = $this->Model_TinTuc->getBySlug($duongdan)[0]['TieuDe'];
 		$data['detail'] = $this->Model_TinTuc->getBySlug($duongdan);
 		$data['banner1'] = $this->Model_GiaoDien->getByType(2);
-		$data['categoryNumber'] = $this->Model_SanPham->getCategoryNumber();
+		$data['class'] = $this->Model_LopHoc->getAll();
+        $data['subject'] = $this->Model_BoMon->getAll();
+        $data['province'] = $this->Model_KhuVuc->getAll();
 		$data['tag'] = $this->Model_TinTuc->getTag();
 		$data['related'] = $this->Model_TinTuc->getRelated($duongdan);
 		$data['new'] = $this->Model_TinTuc->getNew();

@@ -16,6 +16,38 @@ class Model_BoMon extends CI_Model {
 		return $result->result_array();
 	}
 
+	public function checkNumber()
+	{
+		$sql = "SELECT giasu.*, bomon.TenBoMon FROM giasu, bomon, giasu_bomon WHERE giasu.MaGiaSu = giasu_bomon.MaGiaSu AND giasu.TrangThai = 1 AND giasu_bomon.MaBoMon = bomon.MaBoMon AND bomon.TrangThai = 1";
+		$result = $this->db->query($sql);
+		return $result->num_rows();
+	}
+
+	public function getTutor($start = 0, $end = 12){
+		$sql = "SELECT giasu.*, bomon.TenBoMon FROM giasu, bomon, giasu_bomon WHERE giasu.MaGiaSu = giasu_bomon.MaGiaSu AND giasu.TrangThai = 1 AND giasu_bomon.MaBoMon = bomon.MaBoMon AND bomon.TrangThai = 1 ORDER BY giasu.MaGiaSu DESC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($start, $end));
+		return $result->result_array();
+	}
+
+	public function search($TenBoMon){
+		$TenBoMon = '%'.$TenBoMon.'%';
+		$sql = "SELECT giasu.*, bomon.TenBoMon FROM giasu, bomon, giasu_bomon WHERE giasu.MaGiaSu = giasu_bomon.MaGiaSu AND giasu.TrangThai = 1 AND giasu_bomon.MaBoMon = bomon.MaBoMon AND bomon.TrangThai = 1 AND bomon.TenBoMon LIKE ?";
+		$result = $this->db->query($sql, array($TenBoMon));
+		return $result->result_array();
+	}
+
+	public function getBySlug($duongdan, $start = 0, $end = 12){
+		$sql = "SELECT giasu.*, bomon.TenBoMon FROM giasu, bomon, giasu_bomon WHERE giasu.MaGiaSu = giasu_bomon.MaGiaSu AND giasu.TrangThai = 1 AND giasu_bomon.MaBoMon = bomon.MaBoMon AND bomon.TrangThai = 1 AND bomon.DuongDan = ? ORDER BY giasu.MaGiaSu DESC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($duongdan, $start, $end));
+		return $result->result_array();
+	}
+
+	public function checkNumberDetail($duongdan){
+		$sql = "SELECT giasu.*, bomon.TenBoMon FROM giasu, bomon, giasu_bomon WHERE giasu.MaGiaSu = giasu_bomon.MaGiaSu AND giasu.TrangThai = 1 AND giasu_bomon.MaBoMon = bomon.MaBoMon AND bomon.TrangThai = 1 AND bomon.DuongDan = ?";
+		$result = $this->db->query($sql, array($duongdan));
+		return $result->num_rows();
+	}
+
 }	
 
 /* End of file Model_KhachHang.php */

@@ -87,35 +87,26 @@
                         </div>
                     </div>
                     <div class="widget">
-                        <h5 class="widget_title">Chuyên Mục</h5>
+                        <h5 class="widget_title">Tìm Gia Sư Theo Lớp</h5>
                         <ul class="widget_categories">
-                            <?php foreach ($categoryNumber as $key => $value): ?>
-                                <li><a href="<?php echo base_url('chuyen-muc/'.$value['DuongDanChuyenMuc'].'/'); ?>"><span class="categories_name"><?php echo $value['TenChuyenMuc']; ?></span><span class="categories_num">(<?php echo $value['SoLuongSanPham']; ?>)</span></a></li>
+                            <?php foreach ($class as $key => $value): ?>
+                                <li><a href="<?php echo base_url('lop-hoc/'.$value['DuongDan'].'/'); ?>"><span class="categories_name"><?php echo $value['TenLopHoc']; ?></span></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>
                     <div class="widget">
-                        <h5 class="widget_title">Phổ Biến</h5>
-                        <ul class="widget_recent_post">
-                            <?php foreach ($popular as $key => $value): ?>
-                                <?php if($key >= 5){ break; } ?>
-                                <li>
-                                    <div class="post_img">
-                                        <a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/'); ?>"><img style="height: 100px; width: 100px;" src="<?php echo $value['HinhAnh'] ?>" alt="shop_small1"></a>
-                                    </div>
-                                    <div class="post_content">
-                                        <h6 class="product_title" style="white-space: unset;"><a href="<?php echo base_url('san-pham/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TenSanPham']; ?></a></h6>
-                                        <div class="product_price">
-                                            <span class="price"><?php echo number_format($value['GiaBan']); ?></span>
-                                            <del><?php echo number_format($value['GiaGoc']); ?></del>
-                                        </div>
-                                        <div class="rating_wrap">
-                                            <div class="rating">
-                                                <div class="product_rate" style="width:100%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                        <h5 class="widget_title">Tìm Gia Sư Theo Môn</h5>
+                        <ul class="widget_categories">
+                            <?php foreach ($subject as $key => $value): ?>
+                                <li><a href="<?php echo base_url('mon-hoc/'.$value['DuongDan'].'/'); ?>"><span class="categories_name"><?php echo $value['TenBoMon']; ?></span></a></li>
+                            <?php endforeach ?>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h5 class="widget_title">Tìm Gia Sư Khu Vực</h5>
+                        <ul class="widget_categories">
+                            <?php foreach ($province as $key => $value): ?>
+                                <li><a href="<?php echo base_url('khu-vuc/'.$value['DuongDan'].'/'); ?>"><span class="categories_name"><?php echo $value['TenTinhThanh']; ?></span></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>

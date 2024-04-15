@@ -3,9 +3,9 @@
 <div class="breadcrumb_section bg_gray page-title-mini">
     <div class="container"><!-- STRART CONTAINER -->
         <div class="row align-items-center">
-        	<div class="col-md-6">
+            <div class="col-md-6">
                 <div class="page-title">
-            		<h1>
+                    <h1>
                         <?php if(isset($_GET['s']) && !empty($_GET['s'])){ ?>
                             Tìm Kiếm: <?php echo $_GET['s']; ?>
                         <?php }else{ ?>
@@ -52,8 +52,8 @@
                                     <h6 class="product_title text-center"><a href="<?php echo base_url("gia-su/".$value['MaGiaSu'].'/'); ?>"><?php echo $value['HoTen']; ?></a></h6>
                                     <div class="product_price">
                                         <ul>
+                                            <li>Môn học:  <?php echo $value['TenBoMon']; ?></li>
                                             <li>Lương tối thiểu: <?php echo number_format($value['LuongToiThieu']); ?>đ</li>
-                                            <li>Giới tính:  <?php echo $value['GioiTinh'] == 1 ? "Nam" : "Nữ"; ?></li>
                                             <li>Ngành:  <?php echo $value['ChuyenNganh']; ?></li>
                                             <li>Số buổi:  <?php echo $value['SoBuoiDay']; ?> dạy / 1 tuần</li>
                                         </ul>
@@ -68,13 +68,13 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="pagination mt-3 justify-content-center pagination_style1">
-                            <?php if(isset($slugCategory)){ ?>
+                            <?php if(isset($slug)){ ?>
                                 <?php for($i = 1; $i <= $totalPages; $i++){ ?>
-                                    <li class="page-item"><a class="page-link" href="<?php echo base_url('chuyen-muc/'.$slugCategory.'/trang/'.$i.'/') ?>"><?php echo $i; ?></a></li>
+                                    <li class="page-item"><a class="page-link" href="<?php echo base_url('mon-hoc/'.$slug.'/trang/'.$i.'/') ?>"><?php echo $i; ?></a></li>
                                 <?php } ?>
                             <?php }else{ ?>
                                 <?php for($i = 1; $i <= $totalPages; $i++){ ?>
-                                    <li class="page-item"><a class="page-link" href="<?php echo base_url('gia-su/trang/'.$i.'/') ?>"><?php echo $i; ?></a></li>
+                                    <li class="page-item"><a class="page-link" href="<?php echo base_url('mon-hoc/trang/'.$i.'/') ?>"><?php echo $i; ?></a></li>
                                 <?php } ?>
                             <?php } ?>
                             
@@ -87,8 +87,8 @@
                     <div class="widget">
                         <h5 class="widget_title">Tìm Kiếm</h5>
                         <div class="search_form">
-                            <form action="<?php echo base_url('gia-su/') ?>"> 
-                                <input required class="form-control" name="s" placeholder="Nhập tên Gia Sư..." type="text">
+                            <form action="<?php echo base_url('mon-hoc/') ?>"> 
+                                <input required class="form-control" name="s" placeholder="Nhập tên môn học..." type="text">
                                 <button type="submit" title="Subscribe" class="btn icon_search" value="Tìm Kiếm">
                                     <i class="ion-ios-search-strong"></i>
                                 </button>
@@ -115,7 +115,7 @@
                         <h5 class="widget_title">Tìm Gia Sư Khu Vực</h5>
                         <ul class="widget_categories">
                             <?php foreach ($province as $key => $value): ?>
-                                <li><a href="<?php echo base_url('khu-vuc/'.$value['DuongDan'].'/'); ?>"><span class="categories_name"><?php echo $value['TenTinhThanh']; ?></span></a></li>
+                                <li><a href="<?php echo base_url('mon-hoc/'.$value['DuongDan'].'/'); ?>"><span class="categories_name"><?php echo $value['TenTinhThanh']; ?></span></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>

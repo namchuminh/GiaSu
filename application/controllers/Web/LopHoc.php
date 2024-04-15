@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class KhuVuc extends MY_Controller {
+class LopHoc extends MY_Controller {
 
     public function __construct()
     {
@@ -14,7 +14,7 @@ class KhuVuc extends MY_Controller {
 
     public function index()
     {
-        $data['title'] = "Gia sư theo khu vực";
+        $data['title'] = "Gia sư theo lớp học";
         $data['banner1'] = $this->Model_GiaoDien->getByType(2);
         $data['class'] = $this->Model_LopHoc->getAll();
         $data['subject'] = $this->Model_BoMon->getAll();
@@ -22,36 +22,36 @@ class KhuVuc extends MY_Controller {
 
         if(isset($_GET['s']) && !empty($_GET['s'])){
             $data['totalPages'] = 0;
-            $data['list'] = $this->Model_KhuVuc->search($_GET['s']);
-            return $this->load->view('Web/View_GiaSuKhuVuc', $data);
+            $data['list'] = $this->Model_LopHoc->search($_GET['s']);
+            return $this->load->view('Web/View_GiaSuLopHoc', $data);
         }
 
-        $totalRecords = $this->Model_KhuVuc->checkNumber();
+        $totalRecords = $this->Model_LopHoc->checkNumber();
         $recordsPerPage = 12;
         $totalPages = ceil($totalRecords / $recordsPerPage); 
         $data['totalPages'] = $totalPages;
-        $data['list'] = $this->Model_KhuVuc->getTutor();
+        $data['list'] = $this->Model_LopHoc->getTutor();
 
-        return $this->load->view('Web/View_GiaSuKhuVuc', $data);
+        return $this->load->view('Web/View_GiaSuLopHoc', $data);
     }
 
     public function page($trang){
-        $data['title'] = "Gia sư theo khu vực";
+        $data['title'] = "Gia sư theo lớp học";
         $data['banner1'] = $this->Model_GiaoDien->getByType(2);
         $data['class'] = $this->Model_LopHoc->getAll();
         $data['subject'] = $this->Model_BoMon->getAll();
         $data['province'] = $this->Model_KhuVuc->getAll();
         
-        $totalRecords = $this->Model_KhuVuc->checkNumber();
+        $totalRecords = $this->Model_LopHoc->checkNumber();
         $recordsPerPage = 12;
         $totalPages = ceil($totalRecords / $recordsPerPage); 
 
         if($trang < 1){
-            return redirect(base_url('khu-vuc/'));
+            return redirect(base_url('lop-hoc/'));
         }
 
         if($trang > $totalPages){
-            return redirect(base_url('khu-vuc/'));
+            return redirect(base_url('lop-hoc/'));
         }
 
         $start = ($trang - 1) * $recordsPerPage;
@@ -59,60 +59,60 @@ class KhuVuc extends MY_Controller {
 
         if($start == 0){
             $data['totalPages'] = $totalPages;
-            $data['list'] = $this->Model_KhuVuc->getTutor();
-            return $this->load->view('Web/View_GiaSuKhuVuc', $data);
+            $data['list'] = $this->Model_LopHoc->getTutor();
+            return $this->load->view('Web/View_GiaSuLopHoc', $data);
         }else{
             $data['totalPages'] = $totalPages;
-            $data['list'] = $this->Model_KhuVuc->getTutor($start);
-            return $this->load->view('Web/View_GiaSuKhuVuc', $data);
+            $data['list'] = $this->Model_LopHoc->getTutor($start);
+            return $this->load->view('Web/View_GiaSuLopHoc', $data);
         }
     }
 
     public function detail($duongdan){
-        if(count($this->Model_KhuVuc->getBySlug($duongdan)) <= 0){
-            $data['title'] = "Không tìm thấy tỉnh thành";
+        if(count($this->Model_LopHoc->getBySlug($duongdan)) <= 0){
+            $data['title'] = "Không tìm thấy lớp học";
             return $this->load->view('Web/404', $data);
         }
 
-        $data['title'] = "Khu vực ".$this->Model_KhuVuc->getBySlug($duongdan)[0]['TenTinhThanh'];
+        $data['title'] = $this->Model_LopHoc->getBySlug($duongdan)[0]['TenLopHoc'];
         $data['banner1'] = $this->Model_GiaoDien->getByType(2);
         $data['class'] = $this->Model_LopHoc->getAll();
         $data['subject'] = $this->Model_BoMon->getAll();
         $data['province'] = $this->Model_KhuVuc->getAll();
         $data['slug'] = $duongdan;
 
-        $totalRecords = $this->Model_KhuVuc->checkNumberDetail($duongdan);
+        $totalRecords = $this->Model_LopHoc->checkNumberDetail($duongdan);
         $recordsPerPage = 12;
         $totalPages = ceil($totalRecords / $recordsPerPage); 
         $data['totalPages'] = $totalPages;
-        $data['list'] = $this->Model_KhuVuc->getBySlug($duongdan);
+        $data['list'] = $this->Model_LopHoc->getBySlug($duongdan);
 
-        return $this->load->view('Web/View_GiaSuKhuVuc', $data);
+        return $this->load->view('Web/View_GiaSuLopHoc', $data);
     }
 
     public function detailPage($duongdan,$trang){
-        if(count($this->Model_KhuVuc->getBySlug($duongdan)) <= 0){
-            $data['title'] = "Không tìm thấy tỉnh thành";
+        if(count($this->Model_LopHoc->getBySlug($duongdan)) <= 0){
+            $data['title'] = "Không tìm thấy lớp học";
             return $this->load->view('Web/404', $data);
         }
 
-        $data['title'] = "Khu vực ".$this->Model_KhuVuc->getBySlug($duongdan)[0]['TenTinhThanh'];;
+        $data['title'] = $this->Model_LopHoc->getBySlug($duongdan)[0]['TenLopHoc'];
         $data['banner1'] = $this->Model_GiaoDien->getByType(2);
         $data['class'] = $this->Model_LopHoc->getAll();
         $data['subject'] = $this->Model_BoMon->getAll();
         $data['province'] = $this->Model_KhuVuc->getAll();
         $data['slug'] = $duongdan;
 
-        $totalRecords = $this->Model_KhuVuc->checkNumberDetail($duongdan);
+        $totalRecords = $this->Model_LopHoc->checkNumberDetail($duongdan);
         $recordsPerPage = 12;
         $totalPages = ceil($totalRecords / $recordsPerPage); 
 
         if($trang < 1){
-            return redirect(base_url('khu-vuc/'.$duongdan.'/'));
+            return redirect(base_url('lop-hoc/'.$duongdan.'/'));
         }
 
         if($trang > $totalPages){
-            return redirect(base_url('khu-vuc/'.$duongdan.'/'));
+            return redirect(base_url('lop-hoc/'.$duongdan.'/'));
         }
 
         $start = ($trang - 1) * $recordsPerPage;
@@ -120,12 +120,12 @@ class KhuVuc extends MY_Controller {
 
         if($start == 0){
             $data['totalPages'] = $totalPages;
-            $data['list'] = $this->Model_KhuVuc->getBySlug($duongdan);
-            return $this->load->view('Web/View_GiaSuKhuVuc', $data);
+            $data['list'] = $this->Model_LopHoc->getBySlug($duongdan);
+            return $this->load->view('Web/View_GiaSuLopHoc', $data);
         }else{
             $data['totalPages'] = $totalPages;
-            $data['list'] = $this->Model_KhuVuc->getBySlug($duongdan,$start);
-            return $this->load->view('Web/View_GiaSuKhuVuc', $data);
+            $data['list'] = $this->Model_LopHoc->getBySlug($duongdan,$start);
+            return $this->load->view('Web/View_GiaSuLopHoc', $data);
         }
     }
 

@@ -144,31 +144,3 @@
 </style>
 
 <?php require(APPPATH.'views/web/layouts/footer.php'); ?>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $(".add-to-cart").click(function(e){
-            e.preventDefault()
-            var masanpham = $(this).attr("value");
-            let urlThem = "<?php echo base_url('gio-hang/them/') ?>" + masanpham + "/" + "1";
-
-            $.get(urlThem, function(data){
-                var cart = JSON.parse(data);
-                $(".cart_count").text(cart.numberCart)
-                $(".price_symbole").text(cart.sumCart + "đ")
-
-                $('.cart_list').empty();
-                var cartList = cart.cart;
-
-                for (const key in cartList) {
-                    if (cartList.hasOwnProperty(key)) {
-                        const item = cartList[key];
-                        var formatter = new Intl.NumberFormat('en-US');
-                        var price = formatter.format(item.price);
-                        $('.cart_list').append('<li> <a href="<?php echo base_url('gia-su/') ?>'+item.slug+'/"><img src="'+item.image+'" style="height: 80px">'+item.name+'</a> <span class="cart_quantity"> '+item.number+' x <span class="cart_amount"> <span class="price_symbole"></span></span>'+price+'đ</span> </li>');
-                    }
-                }
-            })
-
-        });
-    });
-</script>

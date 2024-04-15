@@ -100,3 +100,21 @@ $route['khu-vuc'] = 'Web/KhuVuc';
 $route['khu-vuc/trang/(:any)'] = 'Web/KhuVuc/page/$1';
 $route['khu-vuc/(:any)'] = 'Web/KhuVuc/detail/$1';
 $route['khu-vuc/(:any)/trang/(:any)'] = 'Web/KhuVuc/detailPage/$1/$2';
+
+
+$route['mon-hoc'] = 'Web/BoMon';
+$route['mon-hoc/trang/(:any)'] = 'Web/BoMon/page/$1';
+$route['mon-hoc/(:any)'] = 'Web/BoMon/detail/$1';
+$route['mon-hoc/(:any)/trang/(:any)'] = 'Web/BoMon/detailPage/$1/$2';
+
+$route['lop-hoc'] = 'Web/LopHoc';
+$route['lop-hoc/trang/(:any)'] = 'Web/LopHoc/page/$1';
+$route['lop-hoc/(:any)'] = 'Web/LopHoc/detail/$1';
+$route['lop-hoc/(:any)/trang/(:any)'] = 'Web/LopHoc/detailPage/$1/$2';
+
+$route['tin-tuc'] = 'Web/TinTuc';
+$route['tin-tuc/(:any)'] = 'Web/TinTuc/detail/$1';
+$route['tin-tuc/trang/(:any)'] = 'Web/TinTuc/page/$1';
+
+
+$route['lien-he'] = 'Web/LienHe';
