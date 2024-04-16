@@ -60,10 +60,10 @@
                 <div class="col-lg-6 col-md-4">
                 	<div class="d-flex align-items-center justify-content-center justify-content-md-end">
                         <div class="header_offer">
-                            <a href="<?php echo base_url('khach-hang/'); ?>" style="color: white;">Tìm Gia Sư</a>
+                            <a href="<?php echo base_url('thue-gia-su/'); ?>" style="color: white;">Thuê Gia Sư</a>
                         </div>
                         <div class="download_wrap">
-                            <a href="<?php echo base_url('dang-xuat/'); ?>" style="color: white;">Đăng Ký Gia Sư</a>
+                            <a href="<?php echo base_url('lam-gia-su/'); ?>" style="color: white;">Đăng Ký Gia Sư</a>
                         </div>
                     </div>
                 </div>

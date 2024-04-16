@@ -48,6 +48,11 @@ class Model_BoMon extends CI_Model {
 		return $result->num_rows();
 	}
 
+	public function getSubject($MaLopHoc){
+		$sql = "SELECT * FROM bomon WHERE MaLopHoc = ? AND TrangThai = 1";
+		$result = $this->db->query($sql, array($MaLopHoc));
+		return $result->result_array();
+	}
 }	
 
 /* End of file Model_KhachHang.php */

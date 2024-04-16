@@ -46,6 +46,12 @@ class Model_KhuVuc extends CI_Model {
 		$result = $this->db->query($sql, array($duongdan));
 		return $result->num_rows();
 	}
+
+	public function getDistrict($MaTinhThanh){
+		$sql = "SELECT * FROM quanhuyen WHERE MaTinhThanh = ? AND TrangThai = 1";
+		$result = $this->db->query($sql, array($MaTinhThanh));
+		return $result->result_array();
+	}
 }
 
 /* End of file DangNhap.php */
