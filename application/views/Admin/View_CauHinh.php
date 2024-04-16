@@ -66,6 +66,12 @@
                     <input type="text" class="form-control" placeholder="Số điện thoại" name="sodienthoai" value="<?php echo $detail[0]['SoDienThoai']; ?>">
                   </div>
                 </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="ten">Mức Phí Gia Sư Nhận Lớp (%)</label>
+                    <input type="number" class="form-control" placeholder="Mức phí % khi gia sư nhận lớp" name="mucphi" value="<?php echo $detail[0]['MucPhi']; ?>">
+                  </div>
+                </div>
               </div> 
               <a class="btn btn-success" href="<?php echo base_url('admin/'); ?>">Quay Lại</a>
               <button class="btn btn-primary">Lưu Cấu Hình</button>

@@ -26,6 +26,12 @@
 
 <div class="section">
     <div class="container">
+        <?php if(isset($error)){ ?>
+            <div class="w-100 text-center">
+                <span><?php echo $error; ?></span>
+            </div>
+            <br>
+        <?php } ?>
         <form class="row" method="post">
             <div class="col-md-6">
                 <div class="heading_s1">
@@ -48,7 +54,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Địa Chỉ Cụ Thể</label>
-                    <input type="text" name="diachi" class="form-control" placeholder="Địa Chỉ Để Gia Sư Đến Dạy *">
+                    <input type="text" name="diachi" class="form-control" placeholder="Địa Chỉ Để Gia Sư Đến Dạy *" required>
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Lớp Học</label>
@@ -67,7 +73,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Số Điện Thoại</label>
-                    <input type="number" name="sodienthoai" class="form-control" placeholder="Số Điện Thoại Người Thuê *">
+                    <input type="number" name="sodienthoai" class="form-control" placeholder="Số Điện Thoại Người Thuê *" required>
                 </div>
                 <button type="submit" class="btn btn-fill-out btn-block">Đăng Ký Thuê Gia Sư</button>
             </div>
@@ -78,7 +84,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Mức Lương</label>
-                        <input type="text" name="mucluong" class="form-control" placeholder="Mức Lương Theo Tháng *">
+                        <input type="text" name="mucluong" class="form-control" placeholder="Mức Lương Theo Tháng *" oninput="formatCurrency(this)" required>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Yêu Cầu Giới Tính</label>
@@ -89,7 +95,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Số Buổi Dạy / Tuần</label>
-                        <input type="sobuoi" name="mucluong" class="form-control" placeholder="Số Buổi Dạy Trong 1 Tuần *">
+                        <input type="text" name="sobuoi" class="form-control" placeholder="Số Buổi Dạy Trong 1 Tuần *" required>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Thời Gian Dạy</label>
@@ -108,7 +114,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Ngày Bắt Đầu</label>
-                        <input type="date" name="ngaybatdau" class="form-control">
+                        <input type="date" name="ngaybatdau" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -129,7 +135,7 @@
                     $("#maquanhuyen").append('<option hidden>Không Có Quận Huyện!</option>');
                 }else{
                     for(var i = 0; i < data.length; i++){
-                        $("#maquanhuyen").append('<option value"'+data[i].MaQuanHuyen+'">'+data[i].TenQuanHuyen+'</option>');
+                        $("#maquanhuyen").append('<option value="'+data[i].MaQuanHuyen+'">'+data[i].TenQuanHuyen+'</option>');
                     }
                 }
             });
@@ -146,10 +152,29 @@
                     $("#mabomon").append('<option hidden>Không Có Môn Học!</option>');
                 }else{
                     for(var i = 0; i < data.length; i++){
-                        $("#mabomon").append('<option value"'+data[i].MaBoMon+'">'+data[i].TenBoMon+'</option>');
+                        $("#mabomon").append('<option value="'+data[i].MaBoMon+'">'+data[i].TenBoMon+'</option>');
                     }
                 }
             });
         });
     });
+</script>
+<script>
+    function formatCurrency(input) {
+        // Lấy giá trị nhập vào
+        let inputVal = input.value;
+
+        // Xóa bỏ các ký tự không phải số
+        inputVal = inputVal.replace(/[^\d]/g, '');
+
+        // Định dạng thành kiểu tiền tệ
+        inputVal = formatNumber(inputVal);
+
+        // Hiển thị giá trị đã định dạng
+        input.value = inputVal;
+    }
+
+    function formatNumber(number) {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
+    }
 </script>

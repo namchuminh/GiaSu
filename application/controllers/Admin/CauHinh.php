@@ -21,6 +21,7 @@ class CauHinh extends CI_Controller {
 			$motaweb = $this->input->post('motaweb');
 			$diachi = $this->input->post('diachi');
 			$email = $this->input->post('email');
+			$mucphi = $this->input->post('mucphi');
 			$sodienthoai = $this->input->post('sodienthoai');
 			$logo = $this->Model_CauHinh->getAll()[0]['Logo'];
 
@@ -46,7 +47,12 @@ class CauHinh extends CI_Controller {
 				$logo = base_url('uploads')."/".$img['file_name'];
 			}
 
-			$this->Model_CauHinh->update($tenwebsite,$motaweb,$logo,$diachi,$email,$sodienthoai);
+			if(!is_numeric($mucphi) || ($mucphi < 0) || ($mucphi > 100)){
+				$data['error'] = "Phần trăm mức phí không hợp lệ!";
+				return $this->load->view('Admin/View_CauHinh', $data);
+			}
+
+			$this->Model_CauHinh->update($tenwebsite,$motaweb,$logo,$diachi,$email,$sodienthoai,$mucphi);
 
 			$data['success'] = "Lưu cấu hình thành công!";
 			$data['detail'] = $this->Model_CauHinh->getAll();

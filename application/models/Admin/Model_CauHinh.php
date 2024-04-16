@@ -16,9 +16,9 @@ class Model_CauHinh extends CI_Model {
 		return $result->result_array();
 	}
 
-	public function update($tenwebsite,$motaweb,$logo,$diachi,$email,$sodienthoai){
-		$sql = "UPDATE cauhinh SET TenWebsite = ?, MoTaWeb = ?, Logo = ?, DiaChi = ?, Email = ?, SoDienThoai = ?";
-		$result = $this->db->query($sql, array($tenwebsite,$motaweb,$logo,$diachi,$email,$sodienthoai));
+	public function update($tenwebsite,$motaweb,$logo,$diachi,$email,$sodienthoai,$mucphi){
+		$sql = "UPDATE cauhinh SET TenWebsite = ?, MoTaWeb = ?, Logo = ?, DiaChi = ?, Email = ?, SoDienThoai = ?, MucPhi = ?";
+		$result = $this->db->query($sql, array($tenwebsite,$motaweb,$logo,$diachi,$email,$sodienthoai,$mucphi));
 		return $result;
 	}
 }

@@ -13,7 +13,7 @@
             <div class="col-md-6">
                 <ol class="breadcrumb justify-content-md-end">
                     <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Trang Chủ</a></li>
-                    <li class="breadcrumb-item"><a href="<?php echo base_url('gio-hang/'); ?>">Giỏ Hàng</a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo base_url('gia-su/'); ?>">Gia Sư</a></li>
                     <li class="breadcrumb-item active">
                         <?php echo $title; ?>
                     </li>
@@ -30,10 +30,10 @@
                 <div class="text-center order_complete">
                     <i class="fas fa-check-circle"></i>
                     <div class="heading_s1">
-                    <h3>Đặt hàng thành công!</h3>
+                    <h3>Yêu Cầu Thuê Gia Sư Thành Công!</h3>
                     </div>
-                    <p>Cảm ơn bạn đã đặt hàng! Chúng tôi đã tiếp nhận đơn hàng của bạn, đơn hàng sẽ được xử lý sớm nhất, vui lòng kiểm tra trạng thái đơn hàng tại trang <a href="<?php echo base_url('khach-hang/'); ?>">khách hàng!</a></p>
-                    <a href="<?php echo base_url('san-pham/'); ?>" class="btn btn-fill-out">Tiếp Tục Mua Sắm</a>
+                    <p>Cảm ơn bạn đã đăng ký thuê gia sư trên hệ thống, chúng tôi sẽ tiếp nhận thông tin của bạn và liên hệ kết nối gia sư cho bạn sớm nhất có thể! Xin cảm ơn!</a></p>
+                    <a href="<?php echo base_url(); ?>" class="btn btn-fill-out">Về Trang Chủ</a>
                 </div>
             </div>
         </div>

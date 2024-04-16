@@ -42,7 +42,7 @@ class Model_LopGiaSu extends CI_Model {
 	}
 
 	public function getAll($start = 0, $end = 10){
-		$sql = "SELECT lopgiasu.*, tinhthanh.TenTinhThanh, quanhuyen.TenQuanHuyen, lophoc.TenLopHoc, bomon.TenBoMon FROM lopgiasu, tinhthanh, quanhuyen, lophoc, bomon WHERE lopgiasu.MaTinhThanh = tinhthanh.MaTinhThanh AND lopgiasu.MaQuanHuyen = quanhuyen.MaQuanHuyen AND lopgiasu.MaLopHoc = lophoc.MaLopHoc AND lopgiasu.MaBoMon = bomon.MaBoMon AND lopgiasu.TrangThai != 0 ORDER BY lopgiasu.MaLopGiaSu ASC LIMIT ?, ?";
+		$sql = "SELECT lopgiasu.*, tinhthanh.TenTinhThanh, quanhuyen.TenQuanHuyen, lophoc.TenLopHoc, bomon.TenBoMon FROM lopgiasu, tinhthanh, quanhuyen, lophoc, bomon WHERE lopgiasu.MaTinhThanh = tinhthanh.MaTinhThanh AND lopgiasu.MaQuanHuyen = quanhuyen.MaQuanHuyen AND lopgiasu.MaLopHoc = lophoc.MaLopHoc AND lopgiasu.MaBoMon = bomon.MaBoMon AND lopgiasu.TrangThai != 0 ORDER BY lopgiasu.MaLopGiaSu DESC LIMIT ?, ?";
 		$result = $this->db->query($sql, array($start, $end));
 		return $result->result_array();
 	}

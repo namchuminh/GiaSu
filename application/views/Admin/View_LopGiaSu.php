@@ -30,9 +30,9 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Lớp Giảng Dạy</th>
+                      <th>Lớp Học</th>
                       <th>Môn Học</th>
-                      <th>Địa Chỉ</th>
+                      <th style="width: 250px;">Địa Chỉ</th>
                       <th>Lương Gia Sư</th>
                       <th>Phí Nhận Lớp</th>
                       <th>Số Buổi / Tuần</th>
@@ -76,6 +76,8 @@
 	                      		<i class="fas fa-edit"></i>
                             	<span>XEM CHI TIẾT</span>
                            	</a>
+                            <br>
+                            <br>
                            	<a href="<?php echo base_url('admin/lop-gia-su/'.$value['MaLopGiaSu'].'/xoa/'); ?>" class="btn btn-danger" style="color: white;">
 	                      		<i class="fas fa-trash"></i>
                             	<span>XÓA</span>
