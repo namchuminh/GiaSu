@@ -120,7 +120,11 @@ $route['tin-tuc/trang/(:any)'] = 'Web/TinTuc/page/$1';
 $route['lien-he'] = 'Web/LienHe';
 
 $route['thue-gia-su'] = 'Web/LopGiaSu';
+$route['lam-gia-su'] = 'Web/GiaSu/register';
+
 
 $route['lay-quan-huyen'] = 'Web/LopGiaSu/getDistrict';
 $route['lay-mon-hoc'] = 'Web/LopGiaSu/getSubject';
+
+
 

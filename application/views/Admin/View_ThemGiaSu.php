@@ -80,20 +80,6 @@
 
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="ten">Tên Đăng Nhập</label>
-                    <input type="text" class="form-control" placeholder="Tài khoản đăng nhập" name="taikhoan" value="<?php echo isset($post) ? $post['TaiKhoan'] : '' ?>">
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="ten">Mật Khẩu</label>
-                    <input type="password" class="form-control" placeholder="Mật khẩu đăng nhập" name="matkhau" value="<?php echo isset($post) ? $post['MatKhau'] : '' ?>">
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="form-group">
                     <label for="ten">Số Điện Thoại</label>
                     <input type="text" class="form-control" placeholder="Số điện thoại liên hệ" name="sodienthoai" value="<?php echo isset($post) ? $post['SoDienThoai'] : '' ?>">
                   </div>

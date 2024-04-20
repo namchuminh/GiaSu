@@ -63,7 +63,7 @@
                             <a href="<?php echo base_url('thue-gia-su/'); ?>" style="color: white;">Thuê Gia Sư</a>
                         </div>
                         <div class="download_wrap">
-                            <a href="<?php echo base_url('lam-gia-su/'); ?>" style="color: white;">Đăng Ký Gia Sư</a>
+                            <a href="<?php echo base_url('lam-gia-su/'); ?>" style="color: white;">Làm Gia Sư</a>
                         </div>
                     </div>
                 </div>

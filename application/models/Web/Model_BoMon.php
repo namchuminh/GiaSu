@@ -53,6 +53,18 @@ class Model_BoMon extends CI_Model {
 		$result = $this->db->query($sql, array($MaLopHoc));
 		return $result->result_array();
 	}
+
+	public function insertTutorSubject($magiasu,$mabomon){
+		$data = array(
+	        "MaGiaSu" => $magiasu,
+	        "MaBoMon" => $mabomon,
+	    );
+
+	    $this->db->insert('giasu_bomon', $data);
+	    $lastInsertedId = $this->db->insert_id();
+
+	    return $lastInsertedId;
+	}
 }	
 
 /* End of file Model_KhachHang.php */

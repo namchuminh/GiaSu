@@ -88,6 +88,172 @@ class GiaSu extends MY_Controller {
 		return $this->load->view('Web/View_ChiTietSanPham', $data);
 	}
 
+	public function register(){
+		$data['title'] = "Đăng ký làm gia sư";
+		$data['province'] = $this->Model_KhuVuc->getAll();
+		$data['class'] = $this->Model_LopHoc->getAll();
+		$data['subject'] = $this->Model_BoMon->getAll();
+		
+		if ($this->input->server('REQUEST_METHOD') === 'POST') {
+			$hoten = $this->input->post('hoten');
+			$ngaysinh = $this->input->post('ngaysinh');
+			$gioitinh = $this->input->post('gioitinh');
+			$matinhthanh = $this->input->post('matinhthanh');
+			$maquanhuyen = $this->input->post('maquanhuyen');
+			$diachi = $this->input->post('diachi');
+			$sodienthoai = $this->input->post('sodienthoai');
+			$email = $this->input->post('email');
+			$chuyennganh = $this->input->post('chuyennganh');
+			$chucvu = $this->input->post('chucvu');
+			$tentruong = $this->input->post('tentruong');
+			$namtotnghiep = $this->input->post('namtotnghiep');
+			$luongtoithieu = $this->input->post('luongtoithieu');
+			$sobuoiday = $this->input->post('sobuoiday');
+			$malophoc = $this->input->post('malophoc');
+			$mabomon = $this->input->post('mabomon');
+
+			if(empty($hoten) || empty($diachi) || empty($sodienthoai) || empty($email) || empty($chuyennganh) || empty($tentruong) || empty($namtotnghiep)){
+				$data['error'] = "Vui lòng nhập đủ thông tin của bạn!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if (strtotime($ngaysinh) == false) {
+				$data['error'] = "Ngày sinh không hợp lệ!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if(count($this->Model_KhuVuc->getById($matinhthanh)) <= 0){
+				$data['error'] = "Vui lòng chọn Tỉnh thành hợp lệ!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if(count($maquanhuyen) <= 0){
+				$data['error'] = "Vui lòng chọn quận huyện gia sư!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if(($gioitinh != 0) && ($gioitinh != 1)){
+				$data['error'] = "Vui lòng chọn giới tính hợp lệ!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			$pattern = '/^(0|\+84)[3|5|7|8|9]\d{8}$/';
+
+			if (!preg_match($pattern, $sodienthoai)) {
+			    $data['error'] = "Vui lòng nhập số điện thoại hợp lệ!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			$anhthe = "";	
+			$anhcccdmattruoc = "";	
+			$anhcccdmatsau = "";	
+			$anhbangcapsinhvien = "";	
+
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('anhthe')){
+				$img = $this->upload->data();
+				$anhthe = base_url('uploads')."/".$img['file_name'];
+			}else{
+				$data['error'] = "Vui lòng chọn ảnh thẻ của gia sư!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if ($this->upload->do_upload('anhcccdmattruoc')){
+				$img = $this->upload->data();
+				$anhcccdmattruoc = base_url('uploads')."/".$img['file_name'];
+			}else{
+				$data['error'] = "Vui lòng chọn ảnh CCCD mặt trước!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if ($this->upload->do_upload('anhcccdmatsau')){
+				$img = $this->upload->data();
+				$anhcccdmatsau = base_url('uploads')."/".$img['file_name'];
+			}else{
+				$data['error'] = "Vui lòng chọn ảnh CCCD mặt sau!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if ($this->upload->do_upload('anhbangcapsinhvien')){
+				$img = $this->upload->data();
+				$anhbangcapsinhvien = base_url('uploads')."/".$img['file_name'];
+			}else{
+				$data['error'] = "Vui lòng chọn ảnh bằng cấp hoặc thẻ sinh viên!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if(($chucvu != 0) && ($chucvu != 1)){
+				$data['error'] = "Vui lòng chọn chức danh của bạn!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if(!is_numeric($namtotnghiep)){
+				$data['error'] = "Năm tốt nghiệp không hợp lệ!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if(!is_numeric($sobuoiday)){
+				$data['error'] = "Số buổi dạy không hợp lệ!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}else{
+				if(($sobuoiday <= 0) || ($sobuoiday > 7)){
+					$data['error'] = "Số buổi dạy từ 1 đến 7 buổi / tuần!";
+					return $this->load->view('Web/View_LamGiaSu', $data);
+				}
+			}
+
+			$luongtoithieu = preg_replace('/[^0-9]/', '', $luongtoithieu);
+
+			if(!is_numeric($luongtoithieu) || ($luongtoithieu <= 0)){
+				$data['error'] = "Mức lương yêu cầu không hợp lệ!";
+				return $this->load->view('Web/View_LopGiaSu', $data);
+			}
+
+			if(count($malophoc) <= 0){
+				$data['error'] = "Vui lòng chọn lớp giảng dạy!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if(count($mabomon) <= 0){
+				$data['error'] = "Vui lòng chọn môn học giảng dạy!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+
+			if(count($this->Model_GiaSu->getInfoByPhone($sodienthoai)) >= 1){
+				$data['error'] = "Số điện thoại gia sư đã tồn tại!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			if(count($this->Model_GiaSu->getInfoByEmail($email)) >= 1){
+				$data['error'] = "Email gia sư đã tồn tại!";
+				return $this->load->view('Web/View_LamGiaSu', $data);
+			}
+
+			$magiasu = $this->Model_GiaSu->add($hoten, $diachi, $ngaysinh, $chucvu, $chuyennganh, $namtotnghiep, $sodienthoai, $email, $luongtoithieu, $anhcccdmattruoc, $anhcccdmatsau, $anhthe, $anhbangcapsinhvien, $sobuoiday, $tentruong, $matinhthanh);
+
+			foreach ($maquanhuyen as $quanhuyen) {
+				$this->Model_KhuVuc->insertTutorDistrict($magiasu,$quanhuyen);
+			}
+
+			foreach ($malophoc as $lophoc) {
+				$this->Model_LopHoc->insertTutorClass($magiasu,$lophoc);
+			}
+
+			foreach ($mabomon as $bomon) {
+				$this->Model_BoMon->insertTutorSubject($magiasu,$bomon);
+			}
+
+			return $this->load->view('Web/View_DangKyGiaSuThanhCong', $data);
+		}
+
+		return $this->load->view('Web/View_LamGiaSu', $data);
+	}
+
 }
 
 /* End of file SanPham.php */

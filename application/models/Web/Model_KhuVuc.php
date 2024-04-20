@@ -22,6 +22,12 @@ class Model_KhuVuc extends CI_Model {
 		return $result->num_rows();
 	}
 
+	public function getById($matinhthanh){
+		$sql = "SELECT * FROM tinhthanh WHERE TrangThai = 1 AND MaTinhThanh = ?";
+		$result = $this->db->query($sql, array($matinhthanh));
+		return $result->result_array();
+	}
+
 	public function getTutor($start = 0, $end = 12){
 		$sql = "SELECT giasu.*, tinhthanh.TenTinhThanh FROM giasu, tinhthanh WHERE giasu.MaTinhThanh = tinhthanh.MaTinhThanh AND giasu.TrangThai = 1 AND tinhthanh.TrangThai = 1 ORDER BY giasu.MaGiaSu DESC LIMIT ?, ?";
 		$result = $this->db->query($sql, array($start, $end));
@@ -51,6 +57,18 @@ class Model_KhuVuc extends CI_Model {
 		$sql = "SELECT * FROM quanhuyen WHERE MaTinhThanh = ? AND TrangThai = 1";
 		$result = $this->db->query($sql, array($MaTinhThanh));
 		return $result->result_array();
+	}
+
+	public function insertTutorDistrict($magiasu,$maquanhuyen){
+		$data = array(
+	        "MaGiaSu" => $magiasu,
+	        "MaQuanHuyen" => $maquanhuyen,
+	    );
+
+	    $this->db->insert('giasu_quanhuyen', $data);
+	    $lastInsertedId = $this->db->insert_id();
+
+	    return $lastInsertedId;
 	}
 }
 

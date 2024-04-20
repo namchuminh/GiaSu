@@ -73,7 +73,7 @@ class Model_BoMon extends CI_Model {
 	}
 
 	public function getCountGiaSuMonHoc($mabomon){
-		return $this->db->query('SELECT * FROM `giasu_bomon` WHERE MaBoMon = ?', array($mabomon))->result_array();
+		return $this->db->query('SELECT giasu.* FROM `giasu_bomon`, giasu WHERE giasu.MaGiaSu = giasu_bomon.MaGiaSu AND giasu_bomon.MaBoMon = ? AND giasu.TrangThai = 1', array($mabomon))->result_array();
 	}
 
 	public function getMonHocGiaSu($MaBoMon,$start = 0, $end = 10){

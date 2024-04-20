@@ -121,7 +121,7 @@ class Model_ViTri extends CI_Model {
 	}
 
 	public function getCountGiaSuViTri($MaQuanHuyen){
-		return $this->db->query('SELECT * FROM `giasu_quanhuyen` WHERE MaQuanHuyen = ?', array($MaQuanHuyen))->result_array();
+		return $this->db->query('SELECT giasu.* FROM `giasu_quanhuyen`, giasu WHERE giasu.MaGiaSu = giasu_quanhuyen.MaGiaSu AND giasu_quanhuyen.MaQuanHuyen = ? AND giasu.TrangThai = 1', array($MaQuanHuyen))->result_array();
 	}
 
 	public function getViTriGiaSu($MaQuanHuyen,$start = 0, $end = 10){

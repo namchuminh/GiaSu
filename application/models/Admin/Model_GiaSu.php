@@ -10,7 +10,7 @@ class Model_GiaSu extends CI_Model {
 		
 	}
 
-	public function add($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$TaiKhoan,$MatKhau,$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh){
+	public function add($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh){
 		$data = array(
 	        "HoTen" => $HoTen,
 	        "DiaChi" => $DiaChi,
@@ -20,8 +20,6 @@ class Model_GiaSu extends CI_Model {
 	        "NamTotNghiep" => $NamTotNghiep,
 	        "SoDienThoai" => $SoDienThoai,
 	        "Email" => $Email,
-	        "TaiKhoan" => $TaiKhoan,
-	        "MatKhau" => $MatKhau,
 	        "LuongToiThieu" => $LuongToiThieu,
 	        "AnhCCCDMatTruoc" => $AnhCCCDMatTruoc,
 	        "AnhCCCDMatSau" => $AnhCCCDMatSau,
@@ -39,7 +37,7 @@ class Model_GiaSu extends CI_Model {
 	    return $lastInsertedId;
 	}
 
-	public function update($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$TaiKhoan,$MatKhau,$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh){
+	public function update($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh){
 		$data = array(
 	        "HoTen" => $HoTen,
 	        "DiaChi" => $DiaChi,
@@ -49,8 +47,6 @@ class Model_GiaSu extends CI_Model {
 	        "NamTotNghiep" => $NamTotNghiep,
 	        "SoDienThoai" => $SoDienThoai,
 	        "Email" => $Email,
-	        "TaiKhoan" => $TaiKhoan,
-	        "MatKhau" => $MatKhau,
 	        "LuongToiThieu" => $LuongToiThieu,
 	        "AnhCCCDMatTruoc" => $AnhCCCDMatTruoc,
 	        "AnhCCCDMatSau" => $AnhCCCDMatSau,

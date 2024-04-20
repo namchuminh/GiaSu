@@ -73,7 +73,7 @@ class Model_LopHoc extends CI_Model {
 	}
 
 	public function getCountGiaSuLopHoc($malophoc){
-		return $this->db->query('SELECT * FROM `giasu_lophoc` WHERE MaLopHoc = ?', array($malophoc))->result_array();
+		return $this->db->query('SELECT giasu.* FROM `giasu_lophoc`, giasu WHERE giasu_lophoc.MaGiaSu = giasu.MaGiaSu AND giasu_lophoc.MaLopHoc = ? AND giasu.TrangThai = 1', array($malophoc))->result_array();
 	}
 
 	public function getLopHocGiaSu($MaLopHoc,$start = 0, $end = 10){

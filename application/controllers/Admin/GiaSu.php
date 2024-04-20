@@ -70,8 +70,6 @@ class GiaSu extends CI_Controller {
 			$TenTruong = $this->input->post('tentruong');
 			$NamTotNghiep = $this->input->post('namtotnghiep');
 			$ChucVu = $this->input->post('chucvu');
-			$TaiKhoan = $this->input->post('taikhoan');
-			$MatKhau = $this->input->post('matkhau');
 			$SoDienThoai = $this->input->post('sodienthoai');
 			$Email = $this->input->post('email');
 			$AnhThe = "";
@@ -90,16 +88,14 @@ class GiaSu extends CI_Controller {
 				'ChuyenNganh' => $ChuyenNganh,
 				'TenTruong' => $TenTruong,
 				'NamTotNghiep' => $NamTotNghiep,
-				'TaiKhoan' => $TaiKhoan,
 				'SoDienThoai' => $SoDienThoai,
 				'Email' => $Email,
 				'DiaChi' => $DiaChi,
 				'SoBuoiDay' => $SoBuoiDay,
 				'LuongToiThieu' => $LuongToiThieu,
-				'MatKhau' => $MatKhau,
 			);
 
-			if(empty($HoTen) || empty($NgaySinh) || empty($ChuyenNganh) || empty($TenTruong) || empty($NamTotNghiep) || empty($TaiKhoan) || empty($MatKhau) || empty($SoDienThoai) || empty($Email) || empty($DiaChi)){
+			if(empty($HoTen) || empty($NgaySinh) || empty($ChuyenNganh) || empty($TenTruong) || empty($NamTotNghiep) || empty($SoDienThoai) || empty($Email) || empty($DiaChi)){
 				$data['error'] = "Vui lòng nhập đủ thông tin!";
 				return $this->load->view('Admin/View_ThemGiaSu', $data);
 			}
@@ -141,11 +137,6 @@ class GiaSu extends CI_Controller {
 				return $this->load->view('Admin/View_ThemGiaSu', $data);
 			}
 
-
-			if(count($this->Model_GiaSu->getInfoByUsername($TaiKhoan)) >= 1){
-				$data['error'] = "Tài khoản gia sư đã tồn tại!";
-				return $this->load->view('Admin/View_ThemGiaSu', $data);
-			}
 
 			if(count($this->Model_GiaSu->getInfoByPhone($SoDienThoai)) >= 1){
 				$data['error'] = "Số điện thoại gia sư đã tồn tại!";
@@ -196,7 +187,7 @@ class GiaSu extends CI_Controller {
 			}
 
 
-			$this->Model_GiaSu->add($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$TaiKhoan,md5($MatKhau),$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh);
+			$this->Model_GiaSu->add($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh);
 
 			$this->session->set_flashdata('success', 'Thêm gia sư thành công!');
 			return redirect(base_url('admin/gia-su/'));
@@ -223,8 +214,6 @@ class GiaSu extends CI_Controller {
 			$TenTruong = $this->input->post('tentruong');
 			$NamTotNghiep = $this->input->post('namtotnghiep');
 			$ChucVu = $this->input->post('chucvu');
-			$TaiKhoan = $this->Model_GiaSu->getById($magiasu)[0]['TaiKhoan'];
-			$MatKhau = $this->Model_GiaSu->getById($magiasu)[0]['MatKhau'];
 			$SoDienThoai = $this->input->post('sodienthoai');
 			$Email = $this->input->post('email');
 			$AnhThe = $this->Model_GiaSu->getById($magiasu)[0]['AnhThe'];
@@ -304,7 +293,7 @@ class GiaSu extends CI_Controller {
 				$AnhBangCapSinhVien = base_url('uploads')."/".$img['file_name'];
 			}
 
-			$this->Model_GiaSu->update($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$TaiKhoan,$MatKhau,$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh);
+			$this->Model_GiaSu->update($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh);
 
 			$data['success'] = "Cập nhật thông tin gia sư thành công!";
 			$data['detail'] = $this->Model_GiaSu->getById($magiasu);

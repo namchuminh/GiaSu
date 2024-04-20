@@ -48,7 +48,20 @@ class Model_LopHoc extends CI_Model {
 		$result = $this->db->query($sql, array($duongdan));
 		return $result->num_rows();
 	}
+
+	public function insertTutorClass($magiasu,$lophoc){
+		$data = array(
+	        "MaGiaSu" => $magiasu,
+	        "MaLopHoc" => $lophoc,
+	    );
+
+	    $this->db->insert('giasu_lophoc', $data);
+	    $lastInsertedId = $this->db->insert_id();
+
+	    return $lastInsertedId;
+	}
 }
+
 
 /* End of file Model_LopGiaSu.php */
 /* Location: ./application/models/Model_LopGiaSu.php */

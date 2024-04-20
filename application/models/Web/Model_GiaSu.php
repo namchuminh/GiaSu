@@ -10,6 +10,33 @@ class Model_GiaSu extends CI_Model {
 		
 	}
 
+	public function add($HoTen,$DiaChi,$NgaySinh,$ChucVu,$ChuyenNganh,$NamTotNghiep,$SoDienThoai,$Email,$LuongToiThieu,$AnhCCCDMatTruoc,$AnhCCCDMatSau,$AnhThe,$AnhBangCapSinhVien,$SoBuoiDay,$TenTruong,$MaTinhThanh){
+		$data = array(
+	        "HoTen" => $HoTen,
+	        "DiaChi" => $DiaChi,
+	        "NgaySinh" => $NgaySinh,
+	        "ChucVu" => $ChucVu,
+	        "ChuyenNganh" => $ChuyenNganh,
+	        "NamTotNghiep" => $NamTotNghiep,
+	        "SoDienThoai" => $SoDienThoai,
+	        "Email" => $Email,
+	        "LuongToiThieu" => $LuongToiThieu,
+	        "AnhCCCDMatTruoc" => $AnhCCCDMatTruoc,
+	        "AnhCCCDMatSau" => $AnhCCCDMatSau,
+	        "AnhThe" => $AnhThe,
+	        "AnhBangCapSinhVien" => $AnhBangCapSinhVien,
+	        "SoBuoiDay" => $SoBuoiDay,
+	        "TenTruong" => $TenTruong,
+	        "MaTinhThanh" => $MaTinhThanh,
+	        "TrangThai" => 0
+	    );
+
+	    $this->db->insert('giasu', $data);
+	    $lastInsertedId = $this->db->insert_id();
+
+	    return $lastInsertedId;
+	}
+
 	public function getById($MaGiaSu){
 		$sql = "SELECT * FROM giasu WHERE MaGiaSu = ? AND TrangThai = 1";
 		$result = $this->db->query($sql, array($MaGiaSu));
@@ -58,6 +85,18 @@ class Model_GiaSu extends CI_Model {
 		$Tengiasu = '%'.$Tengiasu.'%';
 		$sql = "SELECT * FROM giasu WHERE TrangThai = 1 AND HoTen LIKE ?";
 		$result = $this->db->query($sql, array($Tengiasu));
+		return $result->result_array();
+	}
+
+	public function getInfoByPhone($sodienthoai){
+		$sql = "SELECT * FROM giasu WHERE SoDienThoai = ?";
+		$result = $this->db->query($sql, array($sodienthoai));
+		return $result->result_array();
+	}
+
+	public function getInfoByEmail($email){
+		$sql = "SELECT * FROM giasu WHERE Email = ?";
+		$result = $this->db->query($sql, array($email));
 		return $result->result_array();
 	}
 }
