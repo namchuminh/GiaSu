@@ -77,7 +77,9 @@ class LopGiaSu extends MY_Controller {
 
 			$mucphi = ($mucluong * $this->Model_CauHinh->getAll()[0]['MucPhi']) / 100;
 
-			$this->Model_LopGiaSu->insert($matinhthanh,$maquanhuyen,$malophoc,$mabomon,$diachi,$ngaybatdau,$mucluong,$yeucaugioitinh,$sobuoi,$thoigianday,$hinhthuc,$sodienthoai,$mucphi);
+			$malopgiasu = $this->Model_LopGiaSu->insert($matinhthanh,$maquanhuyen,$malophoc,$mabomon,$diachi,$ngaybatdau,$mucluong,$yeucaugioitinh,$sobuoi,$thoigianday,$hinhthuc,$sodienthoai,$mucphi);
+
+			$data['malopgiasu'] = $malopgiasu;
 
 			return $this->load->view('Web/View_ThueGiaSuThanhCong', $data);
 

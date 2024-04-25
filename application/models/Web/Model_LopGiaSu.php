@@ -32,6 +32,26 @@ class Model_LopGiaSu extends CI_Model {
 
 	    return $lastInsertedId;
 	}
+
+	public function getById($malopgiasu)
+	{
+	    $sql = "SELECT * FROM lopgiasu WHERE TrangThai = 1 AND MaLopGiaSu = ? ";
+		$result = $this->db->query($sql, array($malopgiasu));
+		return $result->result_array();
+	}
+
+	public function insertgiasu_lopgiasu($malopgiasu,$magiasu){
+		$data = array(
+	        "MaGiaSu" => $magiasu,
+	        "MaLopGiaSu" => $malopgiasu,
+	        "TrangThai" => 1,
+	    );
+
+	    $this->db->insert('giasu_lopgiasu', $data);
+	    $lastInsertedId = $this->db->insert_id();
+
+	    return $lastInsertedId;
+	}
 }
 
 /* End of file Model_HoaDon.php */

@@ -250,7 +250,7 @@
                                                 </ul>
                                             </div>
                                             <hr>
-                                            <button class="btn btn-fill-out w-100 add-to-cart" style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</button>
+                                            <a href="<?php echo base_url('chon-gia-su/'.$value['MaGiaSu'].'/'); ?>" class="btn btn-fill-out w-100 " style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</a>
                                         </div>
                                     </div>
                                 </div>
@@ -354,7 +354,7 @@
                                                 </ul>
                                             </div>
                                             <hr>
-                                            <button class="btn btn-fill-out w-100 add-to-cart" style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</button>
+                                            <a href="<?php echo base_url('chon-gia-su/'.$value['MaGiaSu'].'/'); ?>" class="btn btn-fill-out w-100 " style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</a>
                                         </div>
                                     </div>
                                 </div>
@@ -409,7 +409,7 @@
                                                 </ul>
                                             </div>
                                             <hr>
-                                            <button class="btn btn-fill-out w-100 add-to-cart" style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</button>
+                                            <a href="<?php echo base_url('chon-gia-su/'.$value['MaGiaSu'].'/'); ?>" class="btn btn-fill-out w-100 " style="line-height: unset; padding: none; padding: 5px 5px;">Chọn Gia Sư</a>
                                         </div>
                                     </div>
                                 </div>
@@ -598,7 +598,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".add-to-cart").click(function(e){
+        $(".").click(function(e){
             e.preventDefault()
             var masanpham = $(this).attr("value");
             let urlThem = "<?php echo base_url('gio-hang/them/') ?>" + masanpham + "/" + "1";

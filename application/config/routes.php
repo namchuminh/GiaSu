@@ -122,6 +122,8 @@ $route['lien-he'] = 'Web/LienHe';
 $route['thue-gia-su'] = 'Web/LopGiaSu';
 $route['lam-gia-su'] = 'Web/GiaSu/register';
 
+$route['chon-gia-su/(:any)'] = 'Web/GiaSu/select/$1';
+
 
 $route['lay-quan-huyen'] = 'Web/LopGiaSu/getDistrict';
 $route['lay-mon-hoc'] = 'Web/LopGiaSu/getSubject';

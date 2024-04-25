@@ -10,6 +10,7 @@ class GiaSu extends MY_Controller {
 		$this->load->model('Web/Model_LopHoc');
 		$this->load->model('Web/Model_BoMon');
 		$this->load->model('Web/Model_KhuVuc');
+		$this->load->model('Web/Model_LopGiaSu');
 	}
 
 	public function index()
@@ -252,6 +253,34 @@ class GiaSu extends MY_Controller {
 		}
 
 		return $this->load->view('Web/View_LamGiaSu', $data);
+	}
+
+	public function select($magiasu)
+	{
+		if(count($this->Model_GiaSu->getById($magiasu)) <= 0){
+			$data['title'] = "Không tìm thấy gia sư!";
+			return $this->load->view('Web/404', $data);
+		}
+
+		$data['title'] = "Thuê gia sư";
+		$data['detail'] = $this->Model_GiaSu->getById($magiasu);
+
+
+		if ($this->input->server('REQUEST_METHOD') === 'POST') {
+			$malopgiasu = $this->input->post('malopgiasu');
+			$malopgiasu = explode("#", $malopgiasu)[1];
+
+			if(count($this->Model_LopGiaSu->getById($malopgiasu)) <= 0){
+				$data['error'] = "Mã lớp gia sư không tồn tại!";
+				return $this->load->view('Web/View_ChonGiaSu', $data);
+			}
+			
+			$this->Model_LopGiaSu->insertgiasu_lopgiasu($malopgiasu,$magiasu);
+
+			return $this->load->view('Web/View_ChonGiaSuThanhCong', $data);
+		}
+
+		return $this->load->view('Web/View_ChonGiaSu', $data);
 	}
 
 }
